@@ -4,7 +4,10 @@ title: Add powerups that boost Power, Fuel and the other generation rates
 status: pending
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
 branch: null
+worktree_path: null
+base_branch: null
 pr_url: null
+is_architectural: null
 approach_summary: null
 created: 2026-08-13
 updated: 2026-08-13
