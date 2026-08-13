@@ -1,7 +1,7 @@
 ---
 id: STORY-019
 title: Add the seasonFrozen rule so the baseball simulation can pause without being deleted
-status: in-progress
+status: ready-for-pr
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
 branch: story/STORY-019-season-frozen-rule
 worktree_path: /Users/brent/idle-base-worktrees/STORY-019
@@ -29,17 +29,17 @@ intact and valid. Small, self-contained, and needed by the Act VII shell story.
 
 ## Acceptance Criteria
 
-- [ ] `seasonFrozen` is a resolvable rule read through `resolveRules(state)` / `computeModifiers`,
+- [x] `seasonFrozen` is a resolvable rule read through `resolveRules(state)` / `computeModifiers`,
       not a bare `balanceConfig` read.
-- [ ] When set, `advance()` skips season-phase progression, game resolution, playoff rounds and the
+- [x] When set, `advance()` skips season-phase progression, game resolution, playoff rounds and the
       `ticketing` income contributor.
-- [ ] When set, `season`, `league`, `roster`, `stadium` and `powerups` remain in state **untouched**
+- [x] When set, `season`, `league`, `roster`, `stadium` and `powerups` remain in state **untouched**
       and valid — nothing is nulled, emptied or reshaped.
-- [ ] When unset (every act today), behaviour is identical to current. Verify by driving `advance()`
+- [x] When unset (every act today), behaviour is identical to current. Verify by driving `advance()`
       over a full simulated season before and after the change and deep-comparing.
-- [ ] Verified on a scratch act with `rules: { seasonFrozen: true }`: the clock advances, non-ticket
+- [x] Verified on a scratch act with `rules: { seasonFrozen: true }`: the clock advances, non-ticket
       income accrues, and no game is ever resolved.
-- [ ] `npm run build` passes.
+- [x] `npm run build` passes.
 
 ## Notes
 

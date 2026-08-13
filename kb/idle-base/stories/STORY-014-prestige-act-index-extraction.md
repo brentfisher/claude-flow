@@ -1,7 +1,7 @@
 ---
 id: STORY-014
 title: Extract PRESTIGE_ACT_INDEX so prestige stops depending on being the last act
-status: pr-opened
+status: merged
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
 branch: story/STORY-014-prestige-act-index
 worktree_path: /Users/brent/idle-base-worktrees/STORY-014

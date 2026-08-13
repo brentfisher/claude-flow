@@ -6,8 +6,7 @@ Source PRDs: `docs/PRD-incremental-odyssey.md` (STORY-001…013),
 `docs/PRD-act-seven-farm-team.md` (STORY-014…033).
 
 Act VII scope sliced: **all phases** — Phase 0 structural prerequisites (§11.1) and content
-Phases 1–5 (§11.2). STORY-014 and STORY-017 are prerequisites for most of the rest; see each
-story's Notes for its dependencies.
+Phases 1–5 (§11.2). See each story's Notes for its dependencies.
 
 | ID | Title | Status | PR |
 |---|---|---|---|
@@ -24,12 +23,12 @@ story's Notes for its dependencies.
 | STORY-011 | Make coins the Act III currency and render the franchise UI at little-league scale | pending | — |
 | STORY-012 | Add concessions — the first passive coin income, shaped like ticketing | pending | — |
 | STORY-013 | Add card packs — the first randomness mechanic, with variance in quality and never in loss | pending | — |
-| STORY-014 | Extract PRESTIGE_ACT_INDEX so prestige stops depending on being the last act | pr-opened | [#16](https://github.com/brentfisher/idle-base/pull/16) |
+| STORY-014 | Extract PRESTIGE_ACT_INDEX so prestige stops depending on being the last act | merged | [#16](https://github.com/brentfisher/idle-base/pull/16) |
 | STORY-015 | Add a `hides` array to act config so an act can retire a tab | pending | — |
 | STORY-016 | Add the salvage currency and the expedition state slice with a defaulting accessor | pending | — |
-| STORY-017 | Refactor findNextEventClock into a contributor list | pending | — |
+| STORY-017 | Refactor findNextEventClock into a contributor list | in-progress | — |
 | STORY-018 | Add the colony consumption path and nextColonyThresholdClock | pending | — |
-| STORY-019 | Add the seasonFrozen rule so the baseball simulation can pause without being deleted | in-progress | — |
+| STORY-019 | Add the seasonFrozen rule so the baseball simulation can pause without being deleted | ready-for-pr | — |
 | STORY-020 | Offer the call-up after the championship and give Act VI a player-gated exit | pending | — |
 | STORY-021 | Add the Act VII config and swap the tab shell using hides | pending | — |
 | STORY-022 | Add the teardown overlay that plays once when the act flips | pending | — |
