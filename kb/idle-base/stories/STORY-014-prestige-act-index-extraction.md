@@ -1,12 +1,12 @@
 ---
 id: STORY-014
 title: Extract PRESTIGE_ACT_INDEX so prestige stops depending on being the last act
-status: in-progress
+status: pr-opened
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
 branch: story/STORY-014-prestige-act-index
 worktree_path: /Users/brent/idle-base-worktrees/STORY-014
 base_branch: master
-pr_url: null
+pr_url: https://github.com/brentfisher/idle-base/pull/16
 is_architectural: true
 approach_summary: >-
   Add `PRESTIGE_ACT_INDEX` to `data/acts.js` alongside `FINAL_ACT_INDEX`, with a comment
@@ -35,18 +35,18 @@ the player to the Act VI index; this story is what keeps that true once Act VI s
 
 ## Acceptance Criteria
 
-- [ ] `data/acts.js` exports `PRESTIGE_ACT_INDEX` alongside `FINAL_ACT_INDEX`, with a comment
+- [x] `data/acts.js` exports `PRESTIGE_ACT_INDEX` alongside `FINAL_ACT_INDEX`, with a comment
       stating the two mean different things and why they happen to be equal today.
-- [ ] `engine/prestige.js: resetForPrestige()` calls `enterAct(..., PRESTIGE_ACT_INDEX)`.
-- [ ] `FINAL_ACT_INDEX` keeps its literal meaning (`ACTS.length - 1`) and is no longer read by
+- [x] `engine/prestige.js: resetForPrestige()` calls `enterAct(..., PRESTIGE_ACT_INDEX)`.
+- [x] `FINAL_ACT_INDEX` keeps its literal meaning (`ACTS.length - 1`) and is no longer read by
       `prestige.js`.
-- [ ] `engine/progression.js: checkActTransition()`'s loop comment is rewritten. It currently
+- [x] `engine/progression.js: checkActTransition()`'s loop comment is rewritten. It currently
       justifies itself with "Act VI declares no exit, so this can never run past the final act" —
       both halves stop being true under Act VII. The new comment must state the invariant that
       actually holds: **the last transition is player-gated**.
-- [ ] **Behaviour is byte-identical to today.** Verify by driving `resetForPrestige()` under `node`
+- [x] **Behaviour is byte-identical to today.** Verify by driving `resetForPrestige()` under `node`
       against a fixture state before and after the change and deep-comparing the results.
-- [ ] `npm run build` passes.
+- [x] `npm run build` passes.
 
 ## Notes
 
