@@ -7,6 +7,7 @@ branch: null
 worktree_path: null
 base_branch: null
 pr_url: null
+is_architectural: null
 approach_summary: null
 created: 2026-08-10
 updated: 2026-08-10
