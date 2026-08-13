@@ -7,8 +7,13 @@ branch: null
 worktree_path: null
 base_branch: null
 pr_url: null
-is_architectural: null
-approach_summary: null
+is_architectural: true
+approach_summary: >-
+  Add `salvage` to `data/currencies.js`, `wallet.salvage` and the `expedition` slice to
+  `state/initialState.js`, and an `expeditionSlice()` defaulting accessor following the
+  `concessionsSlice()`/`wallBallSlice()` pattern so the slice is readable when totally absent.
+  Deliberately does NOT bump `CURRENT_VERSION`; verified by loading pre-change save fixtures from
+  Acts I, III and VI. Touches `data/currencies.js`, `state/initialState.js`, new accessor.
 created: 2026-08-13
 updated: 2026-08-13
 ---

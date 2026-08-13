@@ -1,14 +1,19 @@
 ---
 id: STORY-019
 title: Add the seasonFrozen rule so the baseball simulation can pause without being deleted
-status: pending
+status: in-progress
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
-branch: null
-worktree_path: null
-base_branch: null
+branch: story/STORY-019-season-frozen-rule
+worktree_path: /Users/brent/idle-base-worktrees/STORY-019
+base_branch: master
 pr_url: null
-is_architectural: null
-approach_summary: null
+is_architectural: true
+approach_summary: >-
+  Add a `seasonFrozen` rule resolved through `resolveRules()`/`computeModifiers` and gate
+  season-phase progression, game resolution and the `ticketing` income contributor on it, leaving
+  `season`/`league`/`roster`/`stadium` untouched in state. Verified by simulating a full season
+  before and after for the unset case, and on a scratch act for the set case. Touches
+  `engine/tickEngine.js`, `engine/income.js`, `engine/modifiers.js`, `data/balanceConfig.js`.
 created: 2026-08-13
 updated: 2026-08-13
 ---

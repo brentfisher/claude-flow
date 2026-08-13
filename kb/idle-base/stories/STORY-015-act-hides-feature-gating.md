@@ -7,8 +7,13 @@ branch: null
 worktree_path: null
 base_branch: null
 pr_url: null
-is_architectural: null
-approach_summary: null
+is_architectural: true
+approach_summary: >-
+  Extend `getUnlockedFeatures()` in `engine/progression.js` to subtract an optional per-act
+  `hides` array after building the existing unlocks union, keeping the result derived and never
+  stored. Ships with no act declaring `hides`, so it is a provable no-op — verified by comparing
+  output across act indices 0-5 under node. Touches `engine/progression.js` plus the `acts.js`
+  header comment documenting the new key.
 created: 2026-08-13
 updated: 2026-08-13
 ---

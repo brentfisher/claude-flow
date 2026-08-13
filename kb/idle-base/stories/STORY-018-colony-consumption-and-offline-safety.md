@@ -7,8 +7,14 @@ branch: null
 worktree_path: null
 base_branch: null
 pr_url: null
-is_architectural: null
-approach_summary: null
+is_architectural: true
+approach_summary: >-
+  New pure `engine/colony.js` exporting `colonyRates`/`integrateColony`/
+  `nextColonyThresholdClock`/`spendResource` plus the early phase predicates, clamping every
+  resource to `[0, capacity]` and throttling dependents via a satisfaction factor rather than
+  failing. Ships with zero modules defined so `advance()` is provably unchanged, then proves
+  offline safety on a synthetic over-committed colony across an 8h delta. BLOCKED: needs STORY-016
+  (the slice) and STORY-017 (the contributor list) merged first.
 created: 2026-08-13
 updated: 2026-08-13
 ---

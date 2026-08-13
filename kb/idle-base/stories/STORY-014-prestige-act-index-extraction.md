@@ -1,14 +1,20 @@
 ---
 id: STORY-014
 title: Extract PRESTIGE_ACT_INDEX so prestige stops depending on being the last act
-status: pending
+status: in-progress
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
-branch: null
-worktree_path: null
-base_branch: null
+branch: story/STORY-014-prestige-act-index
+worktree_path: /Users/brent/idle-base-worktrees/STORY-014
+base_branch: master
 pr_url: null
-is_architectural: null
-approach_summary: null
+is_architectural: true
+approach_summary: >-
+  Add `PRESTIGE_ACT_INDEX` to `data/acts.js` alongside `FINAL_ACT_INDEX`, with a comment
+  distinguishing the two meanings that happen to coincide today; point `resetForPrestige()` at it;
+  rewrite the now-stale `checkActTransition` loop comment to state the invariant that actually
+  holds (the last transition is player-gated). Verified byte-identical by driving
+  `resetForPrestige()` under node against a fixture before and after. Touches `data/acts.js`,
+  `engine/prestige.js`, `engine/progression.js`.
 created: 2026-08-13
 updated: 2026-08-13
 ---

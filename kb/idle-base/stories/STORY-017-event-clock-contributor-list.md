@@ -7,8 +7,14 @@ branch: null
 worktree_path: null
 base_branch: null
 pr_url: null
-is_architectural: null
-approach_summary: null
+is_architectural: true
+approach_summary: >-
+  Convert `findNextEventClock()` in `engine/tickEngine.js` from four hardcoded candidate sources
+  into a module-level contributor list of pure `(state) => clock | Infinity` functions, mirroring
+  the income-contributor shape in `engine/income.js`. Purely behaviour-preserving; verified by
+  sweeping fixtures (no season, regular season, playoffs, active powerups, in-progress camps)
+  under node. Touches `engine/tickEngine.js` only — deliberately the narrowest possible diff,
+  because four later stories append to this seam.
 created: 2026-08-13
 updated: 2026-08-13
 ---
