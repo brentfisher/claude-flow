@@ -1,0 +1,9 @@
+{
+  "target_path": "/Users/brent/idle-base",
+  "git_remote": "git@github.com:brentfisher/idle-base.git",
+  "last_crawl_commit": "ece8760a02e784dba77a283ca07e2c1a39273b81",
+  "last_crawl_date": "2026-08-12",
+  "crawl_ref": "master",
+  "local_head_at_crawl": "ece8760a02e784dba77a283ca07e2c1a39273b81",
+  "note": "Local master is in sync with origin/master at crawl time (PR #15 merged)."
+}

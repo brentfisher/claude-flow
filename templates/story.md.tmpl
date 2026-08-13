@@ -1,0 +1,54 @@
+---
+id: {{STORY_ID}}
+title: {{TITLE}}
+status: pending
+prd_source: {{ABSOLUTE_PRD_PATH}}
+# `status` and `updated` start here but move as the story does — /kickoff and
+# /open-prs advance them: pending → approved → in-progress → ready-for-pr → pr-opened.
+# Everything from here down to `created` is filled in later — leave it null.
+# /kickoff writes approach_summary + is_architectural at its approval gate, then
+# branch/worktree_path/base_branch when it creates the worktree; /open-prs writes
+# pr_url. Keep the keys present and null: downstream steps read them, and a
+# missing key is not the same as an empty one.
+branch: null
+worktree_path: null
+base_branch: null
+pr_url: null
+is_architectural: null
+approach_summary: null
+created: {{ISO_DATE}}
+updated: {{ISO_DATE}}
+---
+
+# {{TITLE}}
+
+<!-- One to three paragraphs, in the PRD's terms: the problem this story solves and why it
+     is worth its own PR, what actually changes (named against real files/modules from the
+     knowledgebase), and anything that makes the scope non-obvious — including what the story
+     deliberately does *not* carry. Explain the why. Someone who reads only this section and
+     the criteria below should be able to start without reopening the PRD. -->
+
+## Acceptance Criteria
+
+<!-- Concrete checkbox items, each checkable from a diff or by running the app.
+     Good:  - [ ] `<module>` exports `<SYMBOL>`, and `<caller>` reads it instead of `<OLD>`.
+            - [ ] `<entrypoint>` runs against `<empty/edge-case state>` without throwing.
+     Bad:   - [ ] Prestige works correctly.       (not checkable — by what observation?)
+            - [ ] Refactor the progression engine. (a task, not a criterion)
+     Name real symbols and file paths. If the repo has no test framework, say how to verify
+     instead (run the app, drive the function against a fixture in a scratch script, diff review).
+     Group under bold sub-headings once a story has more than about eight criteria. -->
+
+- [ ]
+
+## Notes
+
+<!-- What the slicing pass learned that constrains this story — cite the source each time:
+     - knowledgebase (`conventions.md:`, `key-files.md:`, `module-map.md:` …);
+     - the PRD sections that specify this story;
+     - dependencies on other stories, and which must land first;
+     - prior OpenSpec decisions. For every decision whose ground this story touches, classify
+       the relationship in one sentence — this story preserves / extends / revises / supersedes
+       it — e.g. "`openspec/changes/<slug>/design.md` **Decision 4** is the decision this story
+       preserves. Do not change the semantics; change only which named constant expresses them."
+       Leave none uncited: a diff that reimplements a decided behaviour reads as overturning it. -->

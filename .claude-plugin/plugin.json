@@ -1,0 +1,15 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "flow",
+  "version": "0.1.0",
+  "description": "Repeatable SDLC pipeline: generate a codebase knowledgebase, slice a PRD into user stories, fan them out to parallel background agents after approval, and open pull requests for completed stories.",
+  "author": {
+    "name": "Brent"
+  },
+  "skills": [
+    "./skills/kb-generate",
+    "./skills/slice-prd",
+    "./skills/kickoff",
+    "./skills/open-prs"
+  ]
+}
