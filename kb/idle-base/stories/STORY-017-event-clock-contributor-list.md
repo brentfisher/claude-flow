@@ -1,12 +1,12 @@
 ---
 id: STORY-017
 title: Refactor findNextEventClock into a contributor list
-status: in-progress
+status: pr-opened
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
 branch: story/STORY-017-event-clock-contributors
 worktree_path: /Users/brent/idle-base-worktrees/STORY-017
 base_branch: master
-pr_url: null
+pr_url: https://github.com/brentfisher/idle-base/pull/18
 is_architectural: true
 approach_summary: >-
   Convert `findNextEventClock()` in `engine/tickEngine.js` from four hardcoded candidate sources
