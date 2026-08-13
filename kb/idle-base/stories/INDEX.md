@@ -28,7 +28,7 @@ Phases 1–5 (§11.2). See each story's Notes for its dependencies.
 | STORY-016 | Add the salvage currency and the expedition state slice with a defaulting accessor | pending | — |
 | STORY-017 | Refactor findNextEventClock into a contributor list | in-progress | — |
 | STORY-018 | Add the colony consumption path and nextColonyThresholdClock | pending | — |
-| STORY-019 | Add the seasonFrozen rule so the baseball simulation can pause without being deleted | ready-for-pr | — |
+| STORY-019 | Add the seasonFrozen rule so the baseball simulation can pause without being deleted | pr-opened | [#17](https://github.com/brentfisher/idle-base/pull/17) |
 | STORY-020 | Offer the call-up after the championship and give Act VI a player-gated exit | pending | — |
 | STORY-021 | Add the Act VII config and swap the tab shell using hides | pending | — |
 | STORY-022 | Add the teardown overlay that plays once when the act flips | pending | — |

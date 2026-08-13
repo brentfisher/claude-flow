@@ -1,12 +1,12 @@
 ---
 id: STORY-019
 title: Add the seasonFrozen rule so the baseball simulation can pause without being deleted
-status: ready-for-pr
+status: pr-opened
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
 branch: story/STORY-019-season-frozen-rule
 worktree_path: /Users/brent/idle-base-worktrees/STORY-019
 base_branch: master
-pr_url: null
+pr_url: https://github.com/brentfisher/idle-base/pull/17
 is_architectural: true
 approach_summary: >-
   Add a `seasonFrozen` rule resolved through `resolveRules()`/`computeModifiers` and gate
