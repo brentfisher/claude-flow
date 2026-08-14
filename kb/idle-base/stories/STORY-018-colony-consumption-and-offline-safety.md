@@ -1,12 +1,12 @@
 ---
 id: STORY-018
 title: Add the colony consumption path and nextColonyThresholdClock
-status: in-progress
+status: pr-opened
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
 branch: story/STORY-018-colony-consumption
 worktree_path: /Users/brent/idle-base-worktrees/STORY-018
 base_branch: master
-pr_url: null
+pr_url: https://github.com/brentfisher/idle-base/pull/22
 is_architectural: true
 approach_summary: >-
   New pure `engine/colony.js` exporting `colonyRates`/`integrateColony`/

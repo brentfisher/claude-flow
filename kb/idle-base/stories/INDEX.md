@@ -5,8 +5,8 @@
 Source PRDs: `docs/PRD-incremental-odyssey.md` (STORY-001…013),
 `docs/PRD-act-seven-farm-team.md` (STORY-014…033).
 
-Phase 0 merged except 018 (in flight). Phase 1 started: 021 in review (#21).
-**Act VII is not reachable in play until STORY-020 gives Act VI its `callUpAccepted` exit.**
+**Phase 0 complete** — 014–019 all merged or in review. Phase 1 begun: 021 (#21), 018 (#22).
+Act VII is not reachable in play until STORY-020 gives Act VI its `callUpAccepted` exit.
 
 | ID | Title | Status | PR |
 |---|---|---|---|
@@ -27,7 +27,7 @@ Phase 0 merged except 018 (in flight). Phase 1 started: 021 in review (#21).
 | STORY-015 | Add a `hides` array to act config so an act can retire a tab | merged | [#19](https://github.com/brentfisher/idle-base/pull/19) |
 | STORY-016 | Add the salvage currency and the expedition state slice with a defaulting accessor | merged | [#20](https://github.com/brentfisher/idle-base/pull/20) |
 | STORY-017 | Refactor findNextEventClock into a contributor list | merged | [#18](https://github.com/brentfisher/idle-base/pull/18) |
-| STORY-018 | Add the colony consumption path and nextColonyThresholdClock | in-progress | — |
+| STORY-018 | Add the colony consumption path and nextColonyThresholdClock | pr-opened | [#22](https://github.com/brentfisher/idle-base/pull/22) |
 | STORY-019 | Add the seasonFrozen rule so the baseball simulation can pause without being deleted | merged | [#17](https://github.com/brentfisher/idle-base/pull/17) |
 | STORY-020 | Offer the call-up after the championship and give Act VI a player-gated exit | pending | — |
 | STORY-021 | Add the Act VII config and swap the tab shell using hides | pr-opened | [#21](https://github.com/brentfisher/idle-base/pull/21) |
