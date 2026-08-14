@@ -1,12 +1,12 @@
 ---
 id: STORY-016
 title: Add the salvage currency and the expedition state slice with a defaulting accessor
-status: in-progress
+status: pr-opened
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
 branch: story/STORY-016-salvage-expedition-slice
 worktree_path: /Users/brent/idle-base-worktrees/STORY-016
 base_branch: master
-pr_url: null
+pr_url: https://github.com/brentfisher/idle-base/pull/20
 is_architectural: true
 approach_summary: >-
   Add `salvage` to `data/currencies.js`, `wallet.salvage` and the `expedition` slice to
@@ -31,19 +31,19 @@ any act must load, default `expedition` to empty, and play on.
 
 ## Acceptance Criteria
 
-- [ ] `data/currencies.js` gains `salvage` as a fourth entry, ordered per the file's cheapest-first
+- [x] `data/currencies.js` gains `salvage` as a fourth entry, ordered per the file's cheapest-first
       convention.
-- [ ] `state/initialState.js` gains `wallet.salvage: 0` and the `expedition` slice in the shape of
+- [x] `state/initialState.js` gains `wallet.salvage: 0` and the `expedition` slice in the shape of
       PRD §4 (`phase`, `resources` with `{ amount, capacity }` per resource, `modules`, `sites`,
       `puzzles`, `contracts`, `launches`).
-- [ ] An `expeditionSlice(state)` defaulting accessor exists, following the `concessionsSlice()` /
+- [x] An `expeditionSlice(state)` defaulting accessor exists, following the `concessionsSlice()` /
       `wallBallSlice()` pattern, and **tolerates the slice being entirely absent**.
-- [ ] `CURRENT_VERSION` is **not** bumped.
-- [ ] A save fixture written before this change loads without error and plays. Verify for a fixture
+- [x] `CURRENT_VERSION` is **not** bumped.
+- [x] A save fixture written before this change loads without error and plays. Verify for a fixture
       from at least Acts I, III and VI.
-- [ ] No component hardcodes a currency name — `HeaderStats` must render Salvage from the config
+- [x] No component hardcodes a currency name — `HeaderStats` must render Salvage from the config
       list, not a literal (`currencies.js` header documents why).
-- [ ] `npm run build` passes.
+- [x] `npm run build` passes.
 
 ## Notes
 
