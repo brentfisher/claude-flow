@@ -1,12 +1,12 @@
 ---
 id: STORY-015
 title: Add a `hides` array to act config so an act can retire a tab
-status: in-progress
+status: pr-opened
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
 branch: story/STORY-015-act-hides
 worktree_path: /Users/brent/idle-base-worktrees/STORY-015
 base_branch: master
-pr_url: null
+pr_url: https://github.com/brentfisher/idle-base/pull/19
 is_architectural: true
 approach_summary: >-
   Extend `getUnlockedFeatures()` in `engine/progression.js` to subtract an optional per-act
@@ -29,16 +29,16 @@ is a provable no-op until Act VII uses it, which is exactly what makes it safe t
 
 ## Acceptance Criteria
 
-- [ ] `getUnlockedFeatures(actIndex)` builds the `unlocks` union as today, then subtracts every id
+- [x] `getUnlockedFeatures(actIndex)` builds the `unlocks` union as today, then subtracts every id
       in the `hides` arrays of acts `0..actIndex`.
-- [ ] `hides` is optional on an act; an act without it behaves exactly as today.
-- [ ] Unlocks remain **derived on every read and never stored** — no new persisted field. Retuning
+- [x] `hides` is optional on an act; an act without it behaves exactly as today.
+- [x] Unlocks remain **derived on every read and never stored** — no new persisted field. Retuning
       which act hides which feature must take effect on an existing save with no migration.
-- [ ] With no act declaring `hides`, `getUnlockedFeatures` returns identical output to the current
+- [x] With no act declaring `hides`, `getUnlockedFeatures` returns identical output to the current
       implementation for every act index 0–5. Verify under `node` across all indices.
-- [ ] A comment records why subtraction happens after the union rather than per-act, and that
+- [x] A comment records why subtraction happens after the union rather than per-act, and that
       `hides` wins over a later `unlocks` of the same id.
-- [ ] `npm run build` passes.
+- [x] `npm run build` passes.
 
 ## Notes
 

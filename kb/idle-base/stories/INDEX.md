@@ -8,7 +8,7 @@ Source PRDs: `docs/PRD-incremental-odyssey.md` (STORY-001…013),
 Act VII scope sliced: **all phases** — Phase 0 structural prerequisites (§11.1) and content
 Phases 1–5 (§11.2). See each story's Notes for its dependencies.
 
-Phase 0 status: 014, 017, 019 merged. 015 and 016 in flight. **018 unblocks once 016 lands.**
+Phase 0: 014, 017, 019 merged · 015 in review (#19) · 016 in flight · **018 unblocks on 016**.
 
 | ID | Title | Status | PR |
 |---|---|---|---|
@@ -26,7 +26,7 @@ Phase 0 status: 014, 017, 019 merged. 015 and 016 in flight. **018 unblocks once
 | STORY-012 | Add concessions — the first passive coin income, shaped like ticketing | pending | — |
 | STORY-013 | Add card packs — the first randomness mechanic, with variance in quality and never in loss | pending | — |
 | STORY-014 | Extract PRESTIGE_ACT_INDEX so prestige stops depending on being the last act | merged | [#16](https://github.com/brentfisher/idle-base/pull/16) |
-| STORY-015 | Add a `hides` array to act config so an act can retire a tab | in-progress | — |
+| STORY-015 | Add a `hides` array to act config so an act can retire a tab | pr-opened | [#19](https://github.com/brentfisher/idle-base/pull/19) |
 | STORY-016 | Add the salvage currency and the expedition state slice with a defaulting accessor | in-progress | — |
 | STORY-017 | Refactor findNextEventClock into a contributor list | merged | [#18](https://github.com/brentfisher/idle-base/pull/18) |
 | STORY-018 | Add the colony consumption path and nextColonyThresholdClock | pending | — |
