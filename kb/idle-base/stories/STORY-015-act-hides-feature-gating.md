@@ -1,7 +1,7 @@
 ---
 id: STORY-015
 title: Add a `hides` array to act config so an act can retire a tab
-status: pr-opened
+status: merged
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
 branch: story/STORY-015-act-hides
 worktree_path: /Users/brent/idle-base-worktrees/STORY-015

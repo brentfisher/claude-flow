@@ -1,7 +1,7 @@
 ---
 id: STORY-016
 title: Add the salvage currency and the expedition state slice with a defaulting accessor
-status: pr-opened
+status: merged
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
 branch: story/STORY-016-salvage-expedition-slice
 worktree_path: /Users/brent/idle-base-worktrees/STORY-016

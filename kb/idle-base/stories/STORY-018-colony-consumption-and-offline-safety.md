@@ -1,11 +1,11 @@
 ---
 id: STORY-018
 title: Add the colony consumption path and nextColonyThresholdClock
-status: pending
+status: in-progress
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
-branch: null
-worktree_path: null
-base_branch: null
+branch: story/STORY-018-colony-consumption
+worktree_path: /Users/brent/idle-base-worktrees/STORY-018
+base_branch: master
 pr_url: null
 is_architectural: true
 approach_summary: >-

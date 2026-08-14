@@ -5,10 +5,8 @@
 Source PRDs: `docs/PRD-incremental-odyssey.md` (STORY-001…013),
 `docs/PRD-act-seven-farm-team.md` (STORY-014…033).
 
-Act VII scope sliced: **all phases** — Phase 0 structural prerequisites (§11.1) and content
-Phases 1–5 (§11.2). See each story's Notes for its dependencies.
-
-Phase 0: 014, 017, 019 merged · 015 (#19) and 016 (#20) in review · **018 unblocks when #20 lands**.
+**Phase 0 complete** (014, 015, 016, 017, 019 merged) except 018, now in flight.
+Phase 1 started: 021 in flight. 020/022/023/024 unblock as 021 and 018 land.
 
 | ID | Title | Status | PR |
 |---|---|---|---|
@@ -26,13 +24,13 @@ Phase 0: 014, 017, 019 merged · 015 (#19) and 016 (#20) in review · **018 unbl
 | STORY-012 | Add concessions — the first passive coin income, shaped like ticketing | pending | — |
 | STORY-013 | Add card packs — the first randomness mechanic, with variance in quality and never in loss | pending | — |
 | STORY-014 | Extract PRESTIGE_ACT_INDEX so prestige stops depending on being the last act | merged | [#16](https://github.com/brentfisher/idle-base/pull/16) |
-| STORY-015 | Add a `hides` array to act config so an act can retire a tab | pr-opened | [#19](https://github.com/brentfisher/idle-base/pull/19) |
-| STORY-016 | Add the salvage currency and the expedition state slice with a defaulting accessor | pr-opened | [#20](https://github.com/brentfisher/idle-base/pull/20) |
+| STORY-015 | Add a `hides` array to act config so an act can retire a tab | merged | [#19](https://github.com/brentfisher/idle-base/pull/19) |
+| STORY-016 | Add the salvage currency and the expedition state slice with a defaulting accessor | merged | [#20](https://github.com/brentfisher/idle-base/pull/20) |
 | STORY-017 | Refactor findNextEventClock into a contributor list | merged | [#18](https://github.com/brentfisher/idle-base/pull/18) |
-| STORY-018 | Add the colony consumption path and nextColonyThresholdClock | pending | — |
+| STORY-018 | Add the colony consumption path and nextColonyThresholdClock | in-progress | — |
 | STORY-019 | Add the seasonFrozen rule so the baseball simulation can pause without being deleted | merged | [#17](https://github.com/brentfisher/idle-base/pull/17) |
 | STORY-020 | Offer the call-up after the championship and give Act VI a player-gated exit | pending | — |
-| STORY-021 | Add the Act VII config and swap the tab shell using hides | pending | — |
+| STORY-021 | Add the Act VII config and swap the tab shell using hides | in-progress | — |
 | STORY-022 | Add the teardown overlay that plays once when the act flips | pending | — |
 | STORY-023 | Rework HeaderStats for a frozen league and add the resource readout | pending | — |
 | STORY-024 | Add the Act VII click, Salvage income, and the aftermath tier-1 modules | pending | — |
