@@ -5,8 +5,13 @@
 Source PRDs: `docs/PRD-incremental-odyssey.md` (STORY-001…013),
 `docs/PRD-act-seven-farm-team.md` (STORY-014…033).
 
-**Phase 0 complete** (014, 015, 016, 017, 019 merged) except 018, now in flight.
-Phase 1 started: 021 in flight. 020/022/023/024 unblock as 021 and 018 land.
+**018 and 021 are `blocked`, not abandoned.** Both hit the account's monthly spend limit
+mid-run. Partial work is committed as WIP and pushed on their branches — neither is
+reviewable, and neither has a PR. Resume by raising the limit, then re-running the agents
+against the existing branches (they resume from the WIP commit, not from scratch).
+
+Open question on 018 before it can be trusted: chunked vs 1-second-stepwise integration
+matched for PRD passes 1–3 but diverged at 8 and 16.
 
 | ID | Title | Status | PR |
 |---|---|---|---|
@@ -27,10 +32,10 @@ Phase 1 started: 021 in flight. 020/022/023/024 unblock as 021 and 018 land.
 | STORY-015 | Add a `hides` array to act config so an act can retire a tab | merged | [#19](https://github.com/brentfisher/idle-base/pull/19) |
 | STORY-016 | Add the salvage currency and the expedition state slice with a defaulting accessor | merged | [#20](https://github.com/brentfisher/idle-base/pull/20) |
 | STORY-017 | Refactor findNextEventClock into a contributor list | merged | [#18](https://github.com/brentfisher/idle-base/pull/18) |
-| STORY-018 | Add the colony consumption path and nextColonyThresholdClock | in-progress | — |
+| STORY-018 | Add the colony consumption path and nextColonyThresholdClock | blocked | — |
 | STORY-019 | Add the seasonFrozen rule so the baseball simulation can pause without being deleted | merged | [#17](https://github.com/brentfisher/idle-base/pull/17) |
 | STORY-020 | Offer the call-up after the championship and give Act VI a player-gated exit | pending | — |
-| STORY-021 | Add the Act VII config and swap the tab shell using hides | in-progress | — |
+| STORY-021 | Add the Act VII config and swap the tab shell using hides | blocked | — |
 | STORY-022 | Add the teardown overlay that plays once when the act flips | pending | — |
 | STORY-023 | Rework HeaderStats for a frozen league and add the resource readout | pending | — |
 | STORY-024 | Add the Act VII click, Salvage income, and the aftermath tier-1 modules | pending | — |

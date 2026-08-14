@@ -1,7 +1,7 @@
 ---
 id: STORY-018
 title: Add the colony consumption path and nextColonyThresholdClock
-status: in-progress
+status: blocked
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
 branch: story/STORY-018-colony-consumption
 worktree_path: /Users/brent/idle-base-worktrees/STORY-018
@@ -16,7 +16,7 @@ approach_summary: >-
   offline safety on a synthetic over-committed colony across an 8h delta. BLOCKED: needs STORY-016
   (the slice) and STORY-017 (the contributor list) merged first.
 created: 2026-08-13
-updated: 2026-08-13
+updated: 2026-08-14
 ---
 
 # Add the colony consumption path and nextColonyThresholdClock
