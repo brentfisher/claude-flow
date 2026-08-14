@@ -1,7 +1,7 @@
 ---
 id: STORY-021
 title: Add the Act VII config and swap the tab shell using hides
-status: blocked
+status: in-progress
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
 branch: story/STORY-021-act-seven-shell
 worktree_path: /Users/brent/idle-base-worktrees/STORY-021
