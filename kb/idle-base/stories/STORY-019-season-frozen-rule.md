@@ -1,7 +1,7 @@
 ---
 id: STORY-019
 title: Add the seasonFrozen rule so the baseball simulation can pause without being deleted
-status: pr-opened
+status: merged
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
 branch: story/STORY-019-season-frozen-rule
 worktree_path: /Users/brent/idle-base-worktrees/STORY-019
