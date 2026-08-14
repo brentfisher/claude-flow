@@ -1,7 +1,7 @@
 ---
 id: STORY-017
 title: Refactor findNextEventClock into a contributor list
-status: pr-opened
+status: merged
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
 branch: story/STORY-017-event-clock-contributors
 worktree_path: /Users/brent/idle-base-worktrees/STORY-017
