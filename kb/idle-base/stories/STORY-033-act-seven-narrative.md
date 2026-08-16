@@ -1,16 +1,16 @@
 ---
 id: STORY-033
 title: Write the Act VII story beats, feed lines and Earth dispatches
-status: pending
+status: merged
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
-branch: null
-worktree_path: null
-base_branch: null
-pr_url: null
-is_architectural: null
+branch: story/STORY-033-act-seven-narrative
+worktree_path: /Users/brent/idle-base-worktrees/STORY-033
+base_branch: story/STORY-022-teardown-overlay
+pr_url: https://github.com/brentfisher/idle-base/pull/29
+is_architectural: false
 approach_summary: null
 created: 2026-08-13
-updated: 2026-08-13
+updated: 2026-08-15
 ---
 
 # Write the Act VII story beats, feed lines and Earth dispatches

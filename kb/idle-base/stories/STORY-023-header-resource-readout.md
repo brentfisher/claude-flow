@@ -1,16 +1,25 @@
 ---
 id: STORY-023
 title: Rework HeaderStats for a frozen league and add the resource readout
-status: pending
+status: merged
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
-branch: null
-worktree_path: null
-base_branch: null
-pr_url: null
-is_architectural: null
-approach_summary: null
+branch: story/STORY-023-header-resource-readout
+worktree_path: /Users/brent/idle-base-worktrees/STORY-023
+base_branch: master
+pr_url: https://github.com/brentfisher/idle-base/pull/26
+is_architectural: true
+approach_summary: >
+  Add a new engine boundary helper `listResources(state, modifiers)` that is a thin presentation
+  wrapper over colonyRates(state, modifiers) in engine/colony.js — it reshapes the existing
+  { net, capacity, satisfaction, gross, demand } return into shop-contract-style rows and performs no
+  second solve, per ledger R5. New components/layout/ResourceChips.js renders amount/capacity, the
+  net-rate sign and a warning state from those rows verbatim. HeaderStats.js suppresses the
+  season/record, reputation, capacity and champions chips when resolveRules(state).seasonFrozen is
+  set, and reuses the era pill's slot for a phase pill read off the expedition slice. Salvage renders
+  as an ordinary currency chip via data/currencies.js. Colour pairs are computed and recorded in the
+  data/eras.js house style; layout verified at 390px.
 created: 2026-08-13
-updated: 2026-08-13
+updated: 2026-08-14
 ---
 
 # Rework HeaderStats for a frozen league and add the resource readout

@@ -1,16 +1,25 @@
 ---
 id: STORY-025
 title: Build the full module ladder, the Power/Provisions interlock and storage
-status: pending
+status: merged
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
-branch: null
-worktree_path: null
-base_branch: null
-pr_url: null
-is_architectural: null
-approach_summary: null
+branch: story/STORY-025-module-ladder
+worktree_path: /Users/brent/idle-base-worktrees/STORY-025
+base_branch: story/STORY-025-module-ladder
+pr_url: https://github.com/brentfisher/idle-base/pull/27
+is_architectural: true
+approach_summary: >
+  Extend data/actSevenModulesConfig.js from the four aftermath rungs to the whole PRD §5.4 ladder,
+  including the storage rows (capacity-only, no rate) and the two site-capability-gated rows
+  (Solar Wing, Ice Harvester) which stay unavailable until STORY-027 provides sites. Make
+  resource capacity DERIVED in engine/colony.js rather than read off the slice, per ledger R1:
+  capacity = base + sum of owned storage grants, and for Fuel additionally the site term, which
+  defaults to 0 today. Add a `requires` gate to the shop contract for the fuelBladder /
+  electrolysisStack pacing control (§5.5). Re-measure the satisfaction solve's convergence against
+  the full ladder rather than synthetic fixtures, and measure each phase's affordability as an
+  INTEGRAL against §5.3's budget.
 created: 2026-08-13
-updated: 2026-08-13
+updated: 2026-08-15
 ---
 
 # Build the full module ladder, the Power/Provisions interlock and storage

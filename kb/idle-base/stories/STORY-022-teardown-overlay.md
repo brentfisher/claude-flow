@@ -1,16 +1,24 @@
 ---
 id: STORY-022
 title: Add the teardown overlay that plays once when the act flips
-status: pending
+status: merged
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
-branch: null
-worktree_path: null
-base_branch: null
-pr_url: null
-is_architectural: null
-approach_summary: null
+branch: story/STORY-022-teardown-overlay
+worktree_path: /Users/brent/idle-base-worktrees/STORY-022
+base_branch: master
+pr_url: https://github.com/brentfisher/idle-base/pull/24
+is_architectural: false
+approach_summary: >
+  New components/expedition/TeardownOverlay.js that depicts the baseball shell tearing apart, driven
+  entirely by CSS stages — no JS timer and no second tick source. The trigger is derived from the act
+  index via a `prev` ref in exactly the shape ToastHost.js:27-32 uses for toasts, so an 8-hour offline
+  catch-up that crosses the boundary plays it once and `prev.current === null` (first mount / reload)
+  plays nothing. Nothing is persisted. Mounted from AppShell.js above its pre-season early return.
+  Styles go in a new feature-scoped section of styles/global.css placed BEFORE the trailing
+  `@media (max-width: 640px)` block, and honour prefers-reduced-motion. Copy comes from
+  data/storyBeats.js under beat id `act-7-teardown`.
 created: 2026-08-13
-updated: 2026-08-13
+updated: 2026-08-14
 ---
 
 # Add the teardown overlay that plays once when the act flips

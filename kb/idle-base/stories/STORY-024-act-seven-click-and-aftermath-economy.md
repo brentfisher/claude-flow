@@ -1,16 +1,25 @@
 ---
 id: STORY-024
 title: Add the Act VII click, Salvage income, and the aftermath tier-1 modules
-status: pending
+status: merged
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
-branch: null
-worktree_path: null
-base_branch: null
-pr_url: null
-is_architectural: null
-approach_summary: null
+branch: story/STORY-024-act-seven-economy
+worktree_path: /Users/brent/idle-base-worktrees/STORY-024
+base_branch: master
+pr_url: https://github.com/brentfisher/idle-base/pull/25
+is_architectural: true
+approach_summary: >
+  Add Act VII's click keys (clickCurrency 'salvage', label, flat value, cooldown) to its `rules` in
+  data/acts.js, which engine/clicker.js already reads off act.rules. New
+  data/actSevenModulesConfig.js holds the tier-1 module ladder with cost(n) = baseCost * growth^n,
+  each row declaring its own Power/Provisions consumption; it populates the EXPEDITION_MODULES array
+  that data/actSevenConfig.js currently exports empty and engine/colony.js already consumes via
+  ownedModules() — so colonyRates' signature and return shape do NOT change. New
+  engine/actSevenModules.js follows the shop contract (listOffers/purchase) modelled on
+  engine/concessions.js. A `salvage` contributor is added to engine/income.js gated on its own
+  unlock. Tuning bands are measured under node and published as a comment in the config.
 created: 2026-08-13
-updated: 2026-08-13
+updated: 2026-08-14
 ---
 
 # Add the Act VII click, Salvage income, and the aftermath tier-1 modules

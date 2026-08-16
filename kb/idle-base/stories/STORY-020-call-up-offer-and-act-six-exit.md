@@ -1,16 +1,24 @@
 ---
 id: STORY-020
 title: Offer the call-up after the championship and give Act VI a player-gated exit
-status: pending
+status: merged
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
-branch: null
-worktree_path: null
-base_branch: null
-pr_url: null
-is_architectural: null
-approach_summary: null
+branch: story/STORY-020-call-up-offer
+worktree_path: /Users/brent/idle-base-worktrees/STORY-020
+base_branch: master
+pr_url: https://github.com/brentfisher/idle-base/pull/23
+is_architectural: false
+approach_summary: >
+  Replace Act VI's `exit: null` in data/acts.js with `exit: { id: 'callUpAccepted' }` — the file's
+  own comment at acts.js:44-50 already anticipates exactly this edit. No new predicate in
+  engine/progression.js: isExitSatisfied already falls back to progression.milestones[id]. The
+  offer rides inside the existing championship Modal in components/layout/AppShell.js (NOT PrestigePanel),
+  gated on prestige.runStats.championships >= 1, with a second explicit one-way confirmation step
+  before dispatching a single action that sets progression.milestones.callUpAccepted; declining is
+  the existing Continue, and a later title re-offers. The act flips on the next tick via
+  checkActTransition, never in the reducer. Prose goes in data/ (toastMessages.js / storyBeats.js).
 created: 2026-08-13
-updated: 2026-08-13
+updated: 2026-08-14
 ---
 
 # Offer the call-up after the championship and give Act VI a player-gated exit

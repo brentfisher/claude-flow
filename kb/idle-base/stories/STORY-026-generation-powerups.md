@@ -1,16 +1,16 @@
 ---
 id: STORY-026
 title: Add powerups that boost Power, Fuel and the other generation rates
-status: pending
+status: merged
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
-branch: null
-worktree_path: null
-base_branch: null
-pr_url: null
-is_architectural: null
+branch: story/STORY-026-generation-powerups
+worktree_path: /Users/brent/idle-base-worktrees/STORY-026
+base_branch: story/STORY-025-module-ladder
+pr_url: https://github.com/brentfisher/idle-base/pull/28
+is_architectural: false
 approach_summary: null
 created: 2026-08-13
-updated: 2026-08-13
+updated: 2026-08-15
 ---
 
 # Add powerups that boost Power, Fuel and the other generation rates
