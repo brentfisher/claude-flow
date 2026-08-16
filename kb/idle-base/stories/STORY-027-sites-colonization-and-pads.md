@@ -1,16 +1,16 @@
 ---
 id: STORY-027
 title: Add the site ladder, colonization, launch pads and the phase writer
-status: pending
+status: pr-opened
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
-branch: null
-worktree_path: null
-base_branch: null
-pr_url: null
-is_architectural: null
+branch: story/STORY-027-sites-colonization
+worktree_path: /Users/brent/idle-base-worktrees/STORY-027
+base_branch: master
+pr_url: https://github.com/brentfisher/idle-base/pull/30
+is_architectural: true
 approach_summary: null
 created: 2026-08-13
-updated: 2026-08-13
+updated: 2026-08-16
 ---
 
 # Add the site ladder, colonization, launch pads and the phase writer

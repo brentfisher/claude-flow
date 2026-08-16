@@ -5,8 +5,34 @@
 Source PRDs: `docs/PRD-incremental-odyssey.md` (STORY-001…013),
 `docs/PRD-act-seven-farm-team.md` (STORY-014…033).
 
-**Phase 0 complete** — 014–019 all merged or in review. Phase 1 begun: 021 (#21), 018 (#22).
-Act VII is not reachable in play until STORY-020 gives Act VI its `callUpAccepted` exit.
+**Phase 0 complete** — 014–019 all merged. Phase 1 landed: 021 (#21), 018 (#22).
+**Phase 2 complete** — 020 (#23), 024 (#25), 023 (#26) and 022 (#24) merged. Act VII is reachable in
+play and `aftermath` is a real economy.
+
+**Phase 3 complete as of 2026-08-15** — 022 (#24), 033 (#29), 025 (#27) and 026 (#28) merged in that
+order. **Act VII is playable end to end**: the crossing works, the teardown plays, the frozen-league
+header swaps in, the module ladder solves its interlock, powerups reach the colony through the
+ration, and the narrative fires across an 8h catch-up without storming.
+
+**Phase 4 open as of 2026-08-16** — 027 (#30) and 029 (#31) are open for review. Both were finished
+in their worktrees, verified under `node`, and merge clean against `master` with no conflicts. The
+worktrees have been removed; the branches live on the remote.
+
+- **027 sites** was cut on `story/STORY-025-module-ladder`. #27 has since merged, so 025's commits
+  are reachable from `master` and #30 targets `master` directly — no rebase was needed.
+- **027 shipped without its minutes-of-income measurement, deliberately and with the reason recorded
+  in the config.** Every purchase it prices happens in `lunar` or later, a site is reached only by a
+  launch, and launches are STORY-028 — so `listOffers()` correctly returns nothing for the two
+  phases that branch can reach. **STORY-028 owes that measurement** (ledger R8).
+- **029 discharged ledger R9 by measurement, not assertion**: 30 seeded runs, shipped counts
+  measuring 1.096 median / 1.104 worst against the 1.3 ceiling, and 1.199 / 1.215 on the adversarial
+  upper bound.
+
+**Everything after 027/029 is serialized** — 028 needs 027; 030, 031 and 032 all need 028. 028 is the
+next story to start, once #30 merges.
+
+Note: 010–013 show `pending` but Acts III and IV shipped directly via #11 and #12 outside the story
+flow — those rows are stale bookkeeping, not outstanding work.
 
 | ID | Title | Status | PR |
 |---|---|---|---|
@@ -17,7 +43,7 @@ Act VII is not reachable in play until STORY-020 gives Act VI its `callUpAccepte
 | STORY-005 | Gate the tab bar on unlocked features with a NEW badge on first reveal | merged | [#5](https://github.com/brentfisher/idle-base/pull/5) |
 | STORY-006 | Add a live event feed that narrates what the simulation just did | merged | [#6](https://github.com/brentfisher/idle-base/pull/6) |
 | STORY-007 | Add a tick heartbeat, next-event countdown, floating gains, and per-currency rates | merged | [#7](https://github.com/brentfisher/idle-base/pull/7) |
-| STORY-008 | Build Act I — The Vacant Lot (clicker, collectors, starter kit) and the narrative layer | merged | [#8 (closed; landed directly as af3c385)](https://github.com/brentfisher/idle-base/pull/8 (closed; landed directly as af3c385)) |
+| STORY-008 | Build Act I — The Vacant Lot (clicker, collectors, starter kit) and the narrative layer | merged | [#8 (closed; landed directly as af3c385)](https://github.com/brentfisher/idle-base/pull/8) |
 | STORY-009 | Build Act II — Off the Wall (wall-ball subgame, bounded wagers, the first crew) | merged | [#10](https://github.com/brentfisher/idle-base/pull/10) |
 | STORY-010 | Enter Act III — the season initializer, the Act II→III boundary, and the little-league title | pending | — |
 | STORY-011 | Make coins the Act III currency and render the franchise UI at little-league scale | pending | — |
@@ -27,19 +53,19 @@ Act VII is not reachable in play until STORY-020 gives Act VI its `callUpAccepte
 | STORY-015 | Add a `hides` array to act config so an act can retire a tab | merged | [#19](https://github.com/brentfisher/idle-base/pull/19) |
 | STORY-016 | Add the salvage currency and the expedition state slice with a defaulting accessor | merged | [#20](https://github.com/brentfisher/idle-base/pull/20) |
 | STORY-017 | Refactor findNextEventClock into a contributor list | merged | [#18](https://github.com/brentfisher/idle-base/pull/18) |
-| STORY-018 | Add the colony consumption path and nextColonyThresholdClock | pr-opened | [#22](https://github.com/brentfisher/idle-base/pull/22) |
+| STORY-018 | Add the colony consumption path and nextColonyThresholdClock | merged | [#22](https://github.com/brentfisher/idle-base/pull/22) |
 | STORY-019 | Add the seasonFrozen rule so the baseball simulation can pause without being deleted | merged | [#17](https://github.com/brentfisher/idle-base/pull/17) |
-| STORY-020 | Offer the call-up after the championship and give Act VI a player-gated exit | pending | — |
-| STORY-021 | Add the Act VII config and swap the tab shell using hides | pr-opened | [#21](https://github.com/brentfisher/idle-base/pull/21) |
-| STORY-022 | Add the teardown overlay that plays once when the act flips | pending | — |
-| STORY-023 | Rework HeaderStats for a frozen league and add the resource readout | pending | — |
-| STORY-024 | Add the Act VII click, Salvage income, and the aftermath tier-1 modules | pending | — |
-| STORY-025 | Build the full module ladder, the Power/Provisions interlock and storage | pending | — |
-| STORY-026 | Add powerups that boost Power, Fuel and the other generation rates | pending | — |
-| STORY-027 | Add the site ladder, colonization, launch pads and the phase writer | pending | — |
+| STORY-020 | Offer the call-up after the championship and give Act VI a player-gated exit | merged | [#23](https://github.com/brentfisher/idle-base/pull/23) |
+| STORY-021 | Add the Act VII config and swap the tab shell using hides | merged | [#21](https://github.com/brentfisher/idle-base/pull/21) |
+| STORY-022 | Add the teardown overlay that plays once when the act flips | merged | [#24](https://github.com/brentfisher/idle-base/pull/24) |
+| STORY-023 | Rework HeaderStats for a frozen league and add the resource readout | merged | [#26](https://github.com/brentfisher/idle-base/pull/26) |
+| STORY-024 | Add the Act VII click, Salvage income, and the aftermath tier-1 modules | merged | [#25](https://github.com/brentfisher/idle-base/pull/25) |
+| STORY-025 | Build the full module ladder, the Power/Provisions interlock and storage | merged | [#27](https://github.com/brentfisher/idle-base/pull/27) |
+| STORY-026 | Add powerups that boost Power, Fuel and the other generation rates | merged | [#28](https://github.com/brentfisher/idle-base/pull/28) |
+| STORY-027 | Add the site ladder, colonization, launch pads and the phase writer | pr-opened | [#30](https://github.com/brentfisher/idle-base/pull/30) |
 | STORY-028 | Add launch commit, transit, arrivals and the overshoot decision | pending | — |
-| STORY-029 | Add the artifact puzzles, the hint ladder and the instrument shop | pending | — |
+| STORY-029 | Add the artifact puzzles, the hint ladder and the instrument shop | pr-opened | [#31](https://github.com/brentfisher/idle-base/pull/31) |
 | STORY-030 | Add the contract board and the fuel side quests | pending | — |
 | STORY-031 | Add Ceres, the Warning Track, and pad tiers 4-5 | pending | — |
 | STORY-032 | Add the win condition and the majors standings board | pending | — |
-| STORY-033 | Write the Act VII story beats, feed lines and Earth dispatches | pending | — |
+| STORY-033 | Write the Act VII story beats, feed lines and Earth dispatches | merged | [#29](https://github.com/brentfisher/idle-base/pull/29) |

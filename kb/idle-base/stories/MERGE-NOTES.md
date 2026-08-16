@@ -115,3 +115,226 @@ Plus a latent softlock: a non-power-of-2 `playoffTeams` (now authorable) strands
 the playoffs phase forever — confirmed by simulation at `playoffTeams: 6`. 002 clamps the field
 down to a power of 2 and to the league size. Act authors should still choose powers of 2
 deliberately rather than lean on the clamp.
+
+
+---
+
+# Merge notes — Phase 2 (four parallel branches, 2026-08-14)
+
+STORY-020 (#23), STORY-022 (#24), STORY-024 (#25) and STORY-023 (#26) all branched from
+`master` @ `ea38953`. Conflicts were measured with `git merge-tree`, not guessed:
+
+| pair | conflicts | files |
+|---|---|---|
+| 020 vs 022 | 2 | `AppShell.js`, `data/storyBeats.js` |
+| 022 vs 023 | 1 | `styles/global.css` |
+| every other pair | **0** | — |
+
+**Recommended order: #23 -> #26 -> #25 (any order among those three) -> #24 last.**
+
+Every conflict involves STORY-022 (#24), so merging it last means resolving all three in one
+rebase instead of spreading them across the queue.
+
+## The three conflicts, and how to resolve each
+
+**1. `data/storyBeats.js` — 020 and 022 both append an Act VII section.**
+Both anchored on the same end-of-array text. **Take both**, as two separate labelled sections:
+`// --- Act VII: the call-up ---` (the `act-7-offer` beat) and
+`// --- Act VII: the teardown ---` (the `act-7-teardown` beat). Neither supersedes the other;
+they are different beats with different `kind` values. Dropping either silently removes a
+feature — the offer would have no prose, or the teardown would render nothing.
+
+**2. `AppShell.js` — adjacent edits, not competing ones.**
+020 changes `{showVictory && (` to `{showVictory && !confirmingCallUp && (` and adds the
+call-up modals; 022 inserts `<TeardownOverlay />` plus its comment on the lines just above.
+They also touch neighbouring lines in the require block. **Take both**; there is no semantic
+overlap. Check afterwards that `<TeardownOverlay />` still appears in BOTH render branches —
+the pre-season shell and the full shell — because AppShell early-returns and an overlay
+mounted only in the full shell is missing for a whole class of saves.
+
+**3. `styles/global.css` — 022 and 023 both add a feature section.**
+Both are placed immediately above the file's trailing `@media (max-width: 640px)` block.
+**Take both, and keep them above that block.** `global.css` ends inside the mobile media
+query, so any rule that lands after it is silently scoped to `max-width: 640px`. Resolving
+this one by appending to the end of the file would produce a build that passes, a diff that
+looks right, and a teardown overlay plus a set of resource chips that are unstyled on desktop.
+
+## No semantic hazards
+
+Unlike Phase 1, no two branches implement the same primitive:
+
+- **024 did not change `colonyRates`'s signature or return shape.** It adds a `salvage` key
+  *additively*, so 023's `listResources` wrapper — built against the pre-024 shape — merges
+  clean and stays correct. This was the one silent-divergence risk in the batch and it did
+  not materialise.
+- 020 owns Act VI's `exit` in `acts.js`; 024 owns Act VII's `rules`. Separate hunks.
+- 023 owns `HeaderStats.js`; nothing else touches it.
+- 024 owns `income.js`, `clicker.js` and `actSevenConfig.js`; nothing else touches them.
+
+## Follow-up owed after all four land
+
+- `act-7-offer` and `act-7-teardown` prose is **serviceable, not final**. STORY-033 owns the
+  Act VII narrative and should rewrite the wording; the beat ids and object shapes are meant
+  to survive that.
+- **STORY-025 must re-measure the Salvage bands.** #25's tuning comment measures a
+  deliberately partial ladder (no storage rungs, no scrubbers bought) and runs ~27% hot at
+  the `aftermath` exit. Ledger R8 says later stories recompute against the measurement — this
+  measurement has a known, stated bias.
+
+
+---
+
+# Merge notes — Phase 3 (stacked branches, 2026-08-15)
+
+Four PRs open, and **two of them are stacked on other PRs rather than on `master`.** That is the
+thing to get right; the rest is ordinary.
+
+```
+master
+ ├── #24  STORY-022  teardown overlay        (on master, MERGEABLE)
+ │    └── #29  STORY-033  narrative          (stacked on #24 — rewrites the act-7-teardown beat #24 adds)
+ └── #27  STORY-025  full module ladder      (on master)
+      └── #28  STORY-026  generation powerups (stacked on #27 — registers the keys 025's ladder makes meaningful)
+```
+
+**Merge order: #24 → #29 → #27 → #28.**
+
+A stacked PR's diff includes its base's commits, so #29 and #28 will look larger than they are
+until their base lands. After the base merges, GitHub usually retargets the child automatically; if
+it does not, rebase the child onto `master` and force-push.
+
+**Do not rebase a stacked branch onto `master` before its base merges** — it drops the base story's
+work, and in #28's case that is silent: the powerups would still build, register their keys, and do
+nothing, because the ladder that makes them meaningful would be gone.
+
+## Why each stack exists
+
+- **#29 on #24** — STORY-033 rewrites `act-7-teardown`, a beat that only exists on #24. Off
+  `master` there would be nothing to rewrite and the narrative story would have to invent the beat,
+  which is how two versions of one beat end up in the file.
+- **#28 on #27** — STORY-026 registers `OUTPUT_MULTIPLIER_KEYS` in `BONUS_KEYS`. Those keys are
+  read by the tier-2 modules STORY-025 adds; on `master` alone the powerups would be measurable
+  against an empty ladder, which is exactly the unmeasured-balance-change the house rules forbid.
+
+## Still building
+
+STORY-027 (sites, stacked on #27) and STORY-029 (puzzles, on `master`) are with agents. **027's
+branch depends on #27 for the same reason #28 does** — it populates the `slice.sites` term that
+`colonyCapacity()` currently sums over an empty list.
+
+## Follow-ups this phase created
+
+- **A naming-convention violation, flagged not fixed.** `data/actSevenNamingConfig.js` (#29)
+  publishes §10.5's one prohibition: no Act VII name may be a word the sport does not already own.
+  `reactor`, `hydroponicsBay` and `solarWing` in `actSevenModulesConfig.js` fail it. Left alone
+  because those rows are load-bearing in three open PRs; worth a renaming pass once the stack
+  lands.
+- **STORY-029 must re-measure the phase bands.** #27's tuning block records `lifeSupport` earning
+  2.6x its §5.3 budget under an optimal buyer. §8's hint ladder is the act's elastic sink (ledger
+  R6) and is where that surplus is supposed to go, so its pricing is the first thing to check
+  against the measurement rather than against §5.3's table.
+
+
+---
+
+# Merge notes — Phase 4 (2026-08-16)
+
+Two PRs, **both on `master`, neither stacked**, and `git merge-tree` measures **zero conflicts**
+for each against current `master` and against each other. This is the easy phase; the thing to get
+right is not the merge, it is what STORY-028 inherits.
+
+```
+master
+ ├── #30  STORY-027  site ladder, pads, phase writer   (on master, clean)
+ └── #31  STORY-029  artifact puzzles, hints, shop     (on master, clean)
+```
+
+**Merge order does not matter.** They touch disjoint files: 027 owns `engine/sites.js`,
+`data/actSevenSitesConfig.js` and the site half of `engine/colony.js`; 029 owns `engine/puzzles.js`
+and `data/actSevenPuzzlesConfig.js`. Both add a contributor to `engine/tickEngine.js`'s list, but at
+different call sites, and the merge is textual either way.
+
+Note 027 was cut on `story/STORY-025-module-ladder`. #27 merged first, so 025's commits are already
+reachable from `master` — `master..HEAD` is exactly 027's own commits, and no rebase was needed. The
+Phase 3 warning about rebasing stacked branches early does not apply here; it was already satisfied.
+
+## What was finished during pickup, not by the original agents
+
+Both branches were left mid-bookkeeping. The code was complete on each; the paperwork was not.
+
+**STORY-027 shipped an empty `MEASURED` block.** The config header stakes a load-bearing empirical
+claim — "R2's cost ladder, re-derived against the measurement" — and pointed at a block reading
+"Filled in by the simulation run" that contained nothing. That is worse than no block: it is a
+citation to evidence that does not exist.
+
+It has been replaced with what is actually verifiable on that branch, plus a stated deferral. See
+below for why the deferral is the correct answer rather than an excuse.
+
+**STORY-027's OpenSpec change directory was a bare scaffold** — a README and a schema line, no
+proposal, design, specs or tasks, while every other Act VII story carries all four. Written and
+committed separately from the measurement commit.
+
+## THE ONE THING STORY-028 MUST NOT MISS
+
+**027's cost ladder is unmeasured, and it cannot be measured until 028 exists.**
+
+Every purchase `data/actSevenSitesConfig.js` prices — all four colonize costs, all four pad tiers —
+happens in `lunar` or later. A site is reached only by a launch. `engine/launch.js` is STORY-028. So
+on 027's branch `listOffers()` correctly returns **zero rows for the whole of `aftermath` and
+`lifeSupport`**, which is every phase that branch can reach. Verified, not assumed.
+
+A minutes-of-income run there would have to synthesise the arrival times it was trying to price
+against, which is inventing the input and reporting it as a result. So it was not done, and the
+config says so in place of promising numbers.
+
+**028 is the first branch on which this ladder can be played at all, so 028 owes the measurement**
+(ledger R8). The costs currently stand on §7.5's minutes-of-income *intent* recomputed against
+STORY-025's measurement (`lifeSupport` earning 2.6x its §5.3 budget) — a re-derivation, not a
+simulation. Check the four colonize costs (3.3 / 6.0 / 8.0 / 6.0 min) and the four pad tiers
+(5 / 8 / 10 / 12 min) against what the economy actually pays once transits land.
+
+Hold the Warning Track's inversion through any retune: **6.0 minutes to establish against a 6.0
+`upkeepFactor` to sustain**. §7.5 asks explicitly that cheap-to-establish/ruinous-to-sustain survive
+retuning, and it currently does.
+
+## What 027 verified, so 028 need not re-derive it
+
+- **Ledger R1's tank floor holds at all five sites** — `1.6 x departingThreshold`, derived rather
+  than authored: 1,200→1,920, 4,200→6,720, 13,500→21,600, 21,000→33,600, 42,000→67,200. **028 must
+  read its thresholds from `departingThreshold` rather than restating them** — two copies is exactly
+  the drift the derivation forecloses.
+- **One pad tier per rung**, no gaps. The top pad reaches rung 5, past the end of the ladder, which
+  is §7.1's "beyond the wall is not a site" — 028's transit code needs to handle a reach with no
+  destination record.
+- **Home Plate's Fuel grant is withheld until a tank is owned.** 0 capacity at act start, 2,320 on
+  the first 400-unit Bladder (its 400 plus Home Plate's 1,920 together). This is R1's pacing control:
+  ungate it and L1's threshold is crossed roughly a third of a phase early, stealing that time from
+  `lunar`.
+- `markSiteReached()` is **exported for 028** and is the single writer of `reached`. Use it rather
+  than writing site records from `engine/launch.js`, so records keep one author.
+- `deepSpace` turns on launch **commit**, not arrival, and reads the launch **log** — a record with
+  `resolved: false` is a burn under way. The predicate turns on the record *existing*, which is what
+  keeps it monotone across resolution. It runs against an empty list today; 028 is what fills it.
+
+## 029's obligation, discharged
+
+Phase 3 left STORY-029 owing a re-measurement of the phase bands against 025's surplus. It did that,
+and it discharged ledger R9 by measurement rather than assertion — 30 runs, seeded rng, mashing
+`attemptBruteForce()` against a synthetic clock rather than computing wall time arithmetically.
+
+Shipped counts measure **1.096 median / 1.104 worst** against R9's 1.3 ceiling, and **1.199 / 1.215**
+on an adversarial upper bound that counts every graded-phase bypass minute as fully blocking.
+
+Worth knowing before anyone reconciles against §8.7's table: **the first attempt is free**, so wall
+times are (n−1) cooldowns, not n. §8.7 quotes n × cooldown, making every row there ~one cooldown
+pessimistic. That is a difference in the table, not a drift in the code.
+
+## Still outstanding
+
+The naming-convention violation flagged in Phase 3 is **still open** — `reactor`, `hydroponicsBay`
+and `solarWing` in `actSevenModulesConfig.js` fail `data/actSevenNamingConfig.js`'s prohibition. It
+was left alone in Phase 3 because those rows were load-bearing in three open PRs. Two of those have
+merged; the rename is worth doing once #30 and #31 land.
+
+Everything 027 adds passes that rule — Home Plate, the On-Deck Circle, the bases, the Warning Track,
+and the Sandlot / Mound / Long Toss / Cutoff / Swing pads are all terms the sport already owns.
