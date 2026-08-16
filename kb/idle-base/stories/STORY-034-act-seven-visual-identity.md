@@ -1,13 +1,13 @@
 ---
 id: STORY-034
 title: Give Act VII its own palette — the expedition body class, the v7 tokens and the phase pills
-status: pending
+status: pr-opened
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
-branch: null
+branch: story/STORY-034-visual-identity
 worktree_path: null
-base_branch: null
-pr_url: null
-is_architectural: null
+base_branch: master
+pr_url: https://github.com/brentfisher/idle-base/pull/32
+is_architectural: true
 approach_summary: null
 created: 2026-08-16
 updated: 2026-08-16
