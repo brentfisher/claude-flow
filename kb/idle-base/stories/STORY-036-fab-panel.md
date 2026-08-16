@@ -7,8 +7,9 @@ branch: null
 worktree_path: null
 base_branch: null
 pr_url: null
-is_architectural: null
-approach_summary: null
+is_architectural: true
+approach_summary: >
+  Replace `FabPanel`'s placeholder with the module shop, rendering `actSevenModules.listOffers()` verbatim. This is Act VII's first purchase surface, so it creates the act's first action module — `state/actions/fabActions.js` plus a new action type and a require in `gameReducer.js`. Renders the two gate kinds distinctly (the `requires` spend gate shows what is still needed; `requiresSiteCapability` fails closed and is absent) and storage grants without a `/s` suffix. The story that makes Act VII playable.
 created: 2026-08-16
 updated: 2026-08-16
 ---

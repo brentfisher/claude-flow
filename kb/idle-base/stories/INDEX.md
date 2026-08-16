@@ -97,12 +97,12 @@ flow — those rows are stale bookkeeping, not outstanding work.
 | STORY-026 | Add powerups that boost Power, Fuel and the other generation rates | merged | [#28](https://github.com/brentfisher/idle-base/pull/28) |
 | STORY-027 | Add the site ladder, colonization, launch pads and the phase writer | pr-opened | [#30](https://github.com/brentfisher/idle-base/pull/30) |
 | STORY-028 | Add launch commit, transit, arrivals and the overshoot decision | pending | — |
-| STORY-029 | Add the artifact puzzles, the hint ladder and the instrument shop | pr-opened | [#31](https://github.com/brentfisher/idle-base/pull/31) |
+| STORY-029 | Add the artifact puzzles, the hint ladder and the instrument shop | merged | [#31](https://github.com/brentfisher/idle-base/pull/31) |
 | STORY-030 | Add the contract board and the fuel side quests | pending | — |
 | STORY-031 | Add Ceres, the Warning Track, and pad tiers 4-5 | pending | — |
 | STORY-032 | Add the win condition and the majors standings board | pending | — |
 | STORY-033 | Write the Act VII story beats, feed lines and Earth dispatches | merged | [#29](https://github.com/brentfisher/idle-base/pull/29) |
-| STORY-034 | Give Act VII its own palette — the expedition body class, the v7 tokens and the phase pills | pr-opened | [#32](https://github.com/brentfisher/idle-base/pull/32) |
+| STORY-034 | Give Act VII its own palette — the expedition body class, the v7 tokens and the phase pills | merged | [#32](https://github.com/brentfisher/idle-base/pull/32) |
 | STORY-035 | Build the Ops panel — net rates, the ration, the phase and the standing directive | pending | — |
 | STORY-036 | Build the Fab panel — the module shop, and the first place Act VII's Salvage can be spent | pending | — |
 | STORY-037 | Build the Sites panel — the colony ladder, its upkeep, and what a pad costs to keep | pending | — |

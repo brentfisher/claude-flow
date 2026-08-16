@@ -1,16 +1,17 @@
 ---
 id: STORY-028
 title: Add launch commit, transit, arrivals and the overshoot decision
-status: pending
+status: in-progress
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
-branch: null
-worktree_path: null
-base_branch: null
+branch: story/STORY-028-launch-transit
+worktree_path: /Users/brent/idle-base-worktrees/STORY-028
+base_branch: master
 pr_url: null
-is_architectural: null
-approach_summary: null
+is_architectural: true
+approach_summary: >
+  New pure `engine/launch.js` in the house contract shape, owning commit, transit resolution, arrival and the overshoot band. Reads every threshold from `departingThreshold` in `data/actSevenSitesConfig.js` rather than restating it (the derivation exists so the number cannot drift), calls the exported `sites.markSiteReached()` on arrival rather than writing site records itself, and appends a transit wake boundary to `tickEngine`'s contributor list beside `nextBuildClock`. Also discharges STORY-027's deferred minutes-of-income measurement, which only becomes possible here because this is the first branch on which the site ladder can be played. Touches `engine/launch.js` (new), `engine/tickEngine.js`, the measurement block in `data/actSevenSitesConfig.js`, and the `launches` slice.
 created: 2026-08-13
-updated: 2026-08-13
+updated: 2026-08-16
 ---
 
 # Add launch commit, transit, arrivals and the overshoot decision

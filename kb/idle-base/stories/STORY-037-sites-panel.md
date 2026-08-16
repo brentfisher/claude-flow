@@ -7,8 +7,9 @@ branch: null
 worktree_path: null
 base_branch: null
 pr_url: null
-is_architectural: null
-approach_summary: null
+is_architectural: true
+approach_summary: >
+  Replace `SitesPanel`'s placeholder, rendering the ladder from `sites.listSites()` and purchasable rows from `sites.listOffers()` — kept as two sources, since `engine/sites.js` documents that computing either from the other loses information. Leads every row with upkeep, because §7.2's design is that expanding is a decision rather than a purchase. Adds `state/actions/sitesActions.js`, an action type and reducer wiring. Must read honestly in today's pre-STORY-028 state, where no site is reachable and the offer list is correctly empty.
 created: 2026-08-16
 updated: 2026-08-16
 ---

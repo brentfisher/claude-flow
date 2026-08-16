@@ -1,7 +1,7 @@
 ---
 id: STORY-029
 title: Add the artifact puzzles, the hint ladder and the instrument shop
-status: pr-opened
+status: merged
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
 branch: story/STORY-029-puzzles-instruments
 worktree_path: /Users/brent/idle-base-worktrees/STORY-029

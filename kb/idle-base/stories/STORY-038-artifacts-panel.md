@@ -7,8 +7,9 @@ branch: null
 worktree_path: null
 base_branch: null
 pr_url: null
-is_architectural: null
-approach_summary: null
+is_architectural: true
+approach_summary: >
+  Replace `ArtifactsPanel`'s placeholder with the puzzle surface: rows from `puzzles.listPuzzles()`, the graded `near[]` feedback that is the whole point of §8.1, the hint ladder priced from `hintCost()`, the brute-force path with its cooldown read from the engine, and the instrument shop. Adds `state/actions/puzzleActions.js` with several action types and reducer wiring. No component-side timer and no `Date.now()` — the cooldown boundary is already on the tick contributor list.
 created: 2026-08-16
 updated: 2026-08-16
 ---

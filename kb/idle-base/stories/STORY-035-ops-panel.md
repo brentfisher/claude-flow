@@ -7,8 +7,9 @@ branch: null
 worktree_path: null
 base_branch: null
 pr_url: null
-is_architectural: null
-approach_summary: null
+is_architectural: false
+approach_summary: >
+  Replace `OpsPanel`'s placeholder with a readout driven entirely by `colonyRates(state)` — per-resource stock against derived capacity, signed net rates, the ration and `supplyThrottle` kept distinct, and Salvage/s from the same solve so the panel and header can never disagree. Adds a phase-keyed standing directive as prose in `src/data/`. Render-only: no new action types, no reducer change, no arithmetic in the component. Extends STORY-034's `.v7-rate` and `.v7-meter` primitives inside the existing `body.expedition` section.
 created: 2026-08-16
 updated: 2026-08-16
 ---
