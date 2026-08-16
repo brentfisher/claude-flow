@@ -10,9 +10,10 @@ Source PRDs: `docs/PRD-incremental-odyssey.md` (STORY-001…013),
 play and `aftermath` is a real economy.
 
 **Phase 3 complete as of 2026-08-15** — 022 (#24), 033 (#29), 025 (#27) and 026 (#28) merged in that
-order. **Act VII is playable end to end**: the crossing works, the teardown plays, the frozen-league
-header swaps in, the module ladder solves its interlock, powerups reach the colony through the
-ration, and the narrative fires across an 8h catch-up without storming.
+order. **Act VII's SIMULATION runs end to end** — the crossing works, the teardown plays, the
+frozen-league header swaps in, the module ladder solves its interlock, powerups reach the colony
+through the ration, and the narrative fires across an 8h catch-up without storming. All of that was
+verified under `node`. It is **not** playable: see the panel gap below.
 
 **Phase 4 open as of 2026-08-16** — 027 (#30) and 029 (#31) are open for review. Both were finished
 in their worktrees, verified under `node`, and merge clean against `master` with no conflicts. The
@@ -28,8 +29,30 @@ worktrees have been removed; the branches live on the remote.
   measuring 1.096 median / 1.104 worst against the 1.3 ceiling, and 1.199 / 1.215 on the adversarial
   upper bound.
 
-**Everything after 027/029 is serialized** — 028 needs 027; 030, 031 and 032 all need 028. 028 is the
-next story to start, once #30 merges.
+## THE PANEL GAP — why Act VII cannot be played yet
+
+**All six Act VII tabs are still placeholders.** `OpsPanel`, `FabPanel`, `SitesPanel`, `LaunchPanel`,
+`ArtifactsPanel` and `ContractsPanel` each render `<PlaceholderPanel>`, whose body is the string
+"This panel is not built yet." STORY-021 shipped the shell, the routing and the six stubs, and said
+in as many words that it owned the routing and deliberately not the contents.
+
+**No story owns replacing them.** 028, 030 and 031 mention no UI at all; only 032 builds a panel
+(the standings board). PRD §6.4 specifies the six tabs' contents and that section was never sliced.
+
+So what a player entering Act VII gets today is: the teardown overlay, the frozen-league header with
+its resource chips, the event feed, and the shell-level click button earning Salvage — with **no way
+to spend it**, because the fabrication shop has no panel. Act VII is currently a clicker with no
+sink, sitting on top of a complete and well-tested economy that nothing renders.
+
+**This needs slicing before Act VII can be tried.** It is the single largest piece of remaining work
+and it is not in the story list.
+
+## Ordering
+
+**Everything after 027/029 is serialized** — 028 needs 027; 030, 031 and 032 all need 028.
+
+028 is the next *engine* story, and it is also what makes 027's ladder non-inert: until launches
+exist no site is ever reached, so colonization and pads are unreachable in play even with a panel.
 
 Note: 010–013 show `pending` but Acts III and IV shipped directly via #11 and #12 outside the story
 flow — those rows are stale bookkeeping, not outstanding work.
