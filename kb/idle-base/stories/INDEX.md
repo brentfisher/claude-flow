@@ -96,7 +96,7 @@ flow — those rows are stale bookkeeping, not outstanding work.
 | STORY-025 | Build the full module ladder, the Power/Provisions interlock and storage | merged | [#27](https://github.com/brentfisher/idle-base/pull/27) |
 | STORY-026 | Add powerups that boost Power, Fuel and the other generation rates | merged | [#28](https://github.com/brentfisher/idle-base/pull/28) |
 | STORY-027 | Add the site ladder, colonization, launch pads and the phase writer | pr-opened | [#30](https://github.com/brentfisher/idle-base/pull/30) |
-| STORY-028 | Add launch commit, transit, arrivals and the overshoot decision | pending | — |
+| STORY-028 | Add launch commit, transit, arrivals and the overshoot decision | pr-opened | [#33](https://github.com/brentfisher/idle-base/pull/33) |
 | STORY-029 | Add the artifact puzzles, the hint ladder and the instrument shop | merged | [#31](https://github.com/brentfisher/idle-base/pull/31) |
 | STORY-030 | Add the contract board and the fuel side quests | pending | — |
 | STORY-031 | Add Ceres, the Warning Track, and pad tiers 4-5 | pending | — |
