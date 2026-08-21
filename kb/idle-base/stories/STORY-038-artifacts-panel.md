@@ -1,17 +1,17 @@
 ---
 id: STORY-038
 title: Build the Artifacts panel — the puzzle surface, the graded feedback and the hint ladder
-status: pending
+status: pr-opened
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
-branch: null
-worktree_path: null
-base_branch: null
-pr_url: null
+branch: story/STORY-038-artifacts-panel
+worktree_path: /Users/brent/idle-base-worktrees/STORY-038
+base_branch: master
+pr_url: https://github.com/brentfisher/idle-base/pull/40
 is_architectural: true
 approach_summary: >
   Replace `ArtifactsPanel`'s placeholder with the puzzle surface: rows from `puzzles.listPuzzles()`, the graded `near[]` feedback that is the whole point of §8.1, the hint ladder priced from `hintCost()`, the brute-force path with its cooldown read from the engine, and the instrument shop. Adds `state/actions/puzzleActions.js` with several action types and reducer wiring. No component-side timer and no `Date.now()` — the cooldown boundary is already on the tick contributor list.
 created: 2026-08-16
-updated: 2026-08-16
+updated: 2026-08-20
 ---
 
 # Build the Artifacts panel — the puzzle surface, the graded feedback and the hint ladder

@@ -14,9 +14,40 @@ frozen-league header swaps in, the module ladder solves its interlock, powerups 
 through the ration, and the narrative fires across an 8h catch-up without storming. All of that was
 verified under `node`. It is **not** playable: see the panel gap below.
 
-**Phase 4 as of 2026-08-16** — 027 merged as **#30**. 029 is open as **#31**, MERGEABLE/CLEAN after
-a `tickEngine.js` conflict was resolved by taking both event-clock contributors (sites' build
-boundary and puzzles' governor boundary — neither supersedes the other).
+**Phase 4 as of 2026-08-16** — 027 merged as **#30**, 029 as **#31**, 034 as **#32**, 028 as **#33**.
+Act VII's engines are now complete through launch: the colony, the module ladder, the site ladder
+and phase writer, launches with transit and the overshoot decision, and the artifact puzzles.
+
+**Wave C complete as of 2026-08-17** — 030 merged as **#34**, 031 as **#35**. `deepSpace` content and
+the contract board are in, and **Act VII's simulation is now complete end to end, aftermath through
+the final threshold.** Everything that remains for the act is presentation (035–040) and the win
+condition (032).
+
+> **RESOLVED 2026-08-17 — the `actualDraw()` site-upkeep defect.** Found by STORY-030 (measured: 10
+> RTGs + On-Deck + a tier-2 pad reported `demand.power 3.8` but `net.power 30.0`, exactly `gross`),
+> deliberately not fixed there because it is a balance change to §7.5's measured tables. Folded into
+> STORY-031, which fixed it and re-took the measurements — §7.2's open conditional was measured and
+> **does not fire**, so neither the upkeep table nor a generator ceiling moved. The correction lands
+> on **Oxygen, not Power** (61.6% of gross once the Track is colonized; free atmosphere falls 2.0 →
+> 0.5 O₂/s at first colonization), and the end-to-end ladder drifts only 0.4 min across 18.4h.
+>
+> The predicted `actualDraw()` conflict between #34 and #35 was resolved by **taking both terms** —
+> `actualDraw(owned, drawMult, throttles, sites, contractDraw)`, each scaled by `drawMult`, neither
+> load-followed — and verified rather than assumed, since either term could go missing and still
+> build: site 2.00 Power/s, contract 3.00, both together exactly 5.00. Same resolution class as the
+> tickEngine event-clock contributors (029 vs 027).
+
+> **CARRIED FORWARD from STORY-031 — two acceptance criteria are partial, by disclosure not oversight.**
+> **AC #6:** D-3's and D-4's named relieving unlocks are §6/§8/§9 content absent from that branch;
+> the beat table marks them unverified rather than claiming an untaken measurement. **AC #7:** D-5's
+> worst dead-air interval measures **3.32 min against a ~2 min target**, diagnosed to §5's 1.14
+> growth exponent on a uniformly-levelled portfolio rather than to anything §7 authors. Per §7.6's
+> own remedy ("a cheaper Salvage sink, never a smaller threshold") nothing was retuned — **the fix
+> belongs to the §6/§8/§9 content stories, and D-5 should be re-measured once they land.**
+> §12's five-hour ceiling was MEASURED by STORY-032 (#36): the act is won at **291.8 min = 4.86h**
+> against the 5.00h ceiling — it holds by eight minutes, but that buyer is a limit and not a person,
+> so **a real player will exceed five hours**. Margin is 2.7%; any retune that lengthens a fill
+> should re-run it.
 
 - **027 shipped without its minutes-of-income measurement, deliberately.** Every purchase it prices
   happens in `lunar` or later, a site is reached only by a launch, and launches are STORY-028 — so
@@ -41,6 +72,36 @@ shop has no panel. A complete, well-tested economy that nothing renders.
 tore down.
 
 **Sliced 2026-08-16 as STORY-034…040.** Seven stories close both gaps.
+
+## Current state — 2026-08-20
+
+**Four of the six panels are done or in flight.** 035 Ops (#38) and 036 Fab (#37) merged 2026-08-18,
+which closed the "a complete economy that nothing renders" gap — Salvage finally has somewhere to go.
+037 Sites is open as **#39** and 038 Artifacts as **#40**. Neither is merged yet, and they
+conflict on `global.css` and `gameReducer.js` — the measured resolution is in MERGE-NOTES.md.
+
+**Remaining: 039 Launch, then 040 Contracts.** Every engine gate on both is long since discharged —
+what is left is presentation only.
+
+**040 must run last of the six and this is structural, not a preference.** It deletes
+`PlaceholderPanel.js` and `ACT_SEVEN_PLACEHOLDER_NOTE` once nothing consumes them, so running it
+beside a sibling that still imports them leaves a tree whose correctness depends on merge order.
+It therefore waits on 039 as well. It also owns re-verifying that the three id lists
+(`actSevenPanels` / AppShell `PANELS` / TabNav `TABS`) still agree — **two of the three fail
+silently**, so that check has to be made rather than assumed.
+
+> **The `global.css` hazard is panels-vs-panels, not a 034 gate.** 034 merging settled who *owns*
+> the `body.expedition` section; it never stopped concurrent stories appending to it. It already
+> fired two-way between Ops and Fab (`efe89ea`, "take both panel CSS blocks"). The failure
+> signature is what makes it dangerous: the file ends inside `@media (max-width: 640px)`, so a rule
+> appended at EOF is **desktop-invisible, builds clean, and looks right in the diff**. Point each
+> panel story at the existing sections as neighbours to copy, and verify placement mechanically
+> after merging — `npm run build` does not discriminate here, only visual presence above 640px does.
+> Verified for 037: `.v7-site` runs 3479–3619, final media query opens 3629.
+
+**Two follow-ups are queued behind the panel wave** — see MERGE-NOTES.md: the naming-convention
+rename (its "#30 and #31 land" gate is discharged) and D-5's dead-air re-measurement (3.32 min
+against a ~2 min target; 029/030/031 have all merged, so the obligation is live).
 
 ## Wave plan
 
@@ -95,17 +156,17 @@ flow — those rows are stale bookkeeping, not outstanding work.
 | STORY-024 | Add the Act VII click, Salvage income, and the aftermath tier-1 modules | merged | [#25](https://github.com/brentfisher/idle-base/pull/25) |
 | STORY-025 | Build the full module ladder, the Power/Provisions interlock and storage | merged | [#27](https://github.com/brentfisher/idle-base/pull/27) |
 | STORY-026 | Add powerups that boost Power, Fuel and the other generation rates | merged | [#28](https://github.com/brentfisher/idle-base/pull/28) |
-| STORY-027 | Add the site ladder, colonization, launch pads and the phase writer | pr-opened | [#30](https://github.com/brentfisher/idle-base/pull/30) |
-| STORY-028 | Add launch commit, transit, arrivals and the overshoot decision | pr-opened | [#33](https://github.com/brentfisher/idle-base/pull/33) |
+| STORY-027 | Add the site ladder, colonization, launch pads and the phase writer | merged | [#30](https://github.com/brentfisher/idle-base/pull/30) |
+| STORY-028 | Add launch commit, transit, arrivals and the overshoot decision | merged | [#33](https://github.com/brentfisher/idle-base/pull/33) |
 | STORY-029 | Add the artifact puzzles, the hint ladder and the instrument shop | merged | [#31](https://github.com/brentfisher/idle-base/pull/31) |
-| STORY-030 | Add the contract board and the fuel side quests | pending | — |
-| STORY-031 | Add Ceres, the Warning Track, and pad tiers 4-5 | pending | — |
-| STORY-032 | Add the win condition and the majors standings board | pending | — |
+| STORY-030 | Add the contract board and the fuel side quests | merged | [#34](https://github.com/brentfisher/idle-base/pull/34) |
+| STORY-031 | Add Ceres, the Warning Track, and pad tiers 4-5 | merged | [#35](https://github.com/brentfisher/idle-base/pull/35) |
+| STORY-032 | Add the win condition and the majors standings board | merged | [#36](https://github.com/brentfisher/idle-base/pull/36) |
 | STORY-033 | Write the Act VII story beats, feed lines and Earth dispatches | merged | [#29](https://github.com/brentfisher/idle-base/pull/29) |
 | STORY-034 | Give Act VII its own palette — the expedition body class, the v7 tokens and the phase pills | merged | [#32](https://github.com/brentfisher/idle-base/pull/32) |
-| STORY-035 | Build the Ops panel — net rates, the ration, the phase and the standing directive | pending | — |
-| STORY-036 | Build the Fab panel — the module shop, and the first place Act VII's Salvage can be spent | pending | — |
-| STORY-037 | Build the Sites panel — the colony ladder, its upkeep, and what a pad costs to keep | pending | — |
-| STORY-038 | Build the Artifacts panel — the puzzle surface, the graded feedback and the hint ladder | pending | — |
+| STORY-035 | Build the Ops panel — net rates, the ration, the phase and the standing directive | merged | [#38](https://github.com/brentfisher/idle-base/pull/38) |
+| STORY-036 | Build the Fab panel — the module shop, and the first place Act VII's Salvage can be spent | merged | [#37](https://github.com/brentfisher/idle-base/pull/37) |
+| STORY-037 | Build the Sites panel — the colony ladder, its upkeep, and what a pad costs to keep | pr-opened | [#39](https://github.com/brentfisher/idle-base/pull/39) |
+| STORY-038 | Build the Artifacts panel — the puzzle surface, the graded feedback and the hint ladder | pr-opened | [#40](https://github.com/brentfisher/idle-base/pull/40) |
 | STORY-039 | Build the Launch panel — the Fuel threshold, the overshoot decision and the commit surface | pending | — |
 | STORY-040 | Build the Contracts panel — the optional board, paid in Fuel | pending | — |

@@ -1,17 +1,17 @@
 ---
 id: STORY-037
 title: Build the Sites panel — the colony ladder, its upkeep, and what a pad costs to keep
-status: pending
+status: pr-opened
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
-branch: null
-worktree_path: null
-base_branch: null
-pr_url: null
+branch: story/STORY-037-sites-panel
+worktree_path: /Users/brent/idle-base-worktrees/STORY-037
+base_branch: master
+pr_url: https://github.com/brentfisher/idle-base/pull/39
 is_architectural: true
 approach_summary: >
   Replace `SitesPanel`'s placeholder, rendering the ladder from `sites.listSites()` and purchasable rows from `sites.listOffers()` — kept as two sources, since `engine/sites.js` documents that computing either from the other loses information. Leads every row with upkeep, because §7.2's design is that expanding is a decision rather than a purchase. Adds `state/actions/sitesActions.js`, an action type and reducer wiring. Must read honestly in today's pre-STORY-028 state, where no site is reachable and the offer list is correctly empty.
 created: 2026-08-16
-updated: 2026-08-16
+updated: 2026-08-20
 ---
 
 # Build the Sites panel — the colony ladder, its upkeep, and what a pad costs to keep

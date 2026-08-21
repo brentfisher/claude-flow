@@ -1,16 +1,28 @@
 ---
 id: STORY-032
 title: Add the win condition and the majors standings board
-status: pending
+status: merged
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
-branch: null
-worktree_path: null
-base_branch: null
-pr_url: null
-is_architectural: null
-approach_summary: null
+branch: story/STORY-032-win-condition-majors-board
+worktree_path: /Users/brent/idle-base-worktrees/STORY-032
+base_branch: master
+pr_url: https://github.com/brentfisher/idle-base/pull/36
+is_architectural: true
+approach_summary: >
+  Every integration hook this story needs already exists and was left for it by name — the work is
+  connecting them, not inventing them. `padTier5.reachesRung: 5` (data/actSevenSitesConfig.js)
+  carries a comment saying engine/launch.js resolves a destination rung with no site as the win
+  condition, and names STORY-032. `sites.js:overTheWallGrants()` already reads
+  `milestones.overTheWall` and already gates the `majors` rung of the phase ladder, returning false
+  through a defaulted lookup until something sets it — so the win condition is a milestone write at
+  commit of the fifth burn, and `majors` then follows with no new phase machinery. The deterministic
+  placement formula reads `aptitudeSummary()`/`solvedUnaided()` (puzzles.js), the contract board's
+  `completedIds`, `overshootRatio` stored per launch record, and peak network Fuel/s. New
+  `data/actSevenBoardConfig.js` for prose; the board panel REUSES components/league/StandingsPanel.js
+  (89L) rather than introducing a second standings layout. Also owed by this story: §12's five-hour
+  ceiling optimal-buyer run, deferred to it by STORY-028 and again by STORY-031.
 created: 2026-08-13
-updated: 2026-08-13
+updated: 2026-08-17
 ---
 
 # Add the win condition and the majors standings board

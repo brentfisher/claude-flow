@@ -1,16 +1,24 @@
 ---
 id: STORY-030
 title: Add the contract board and the fuel side quests
-status: pending
+status: merged
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
-branch: null
-worktree_path: null
-base_branch: null
-pr_url: null
-is_architectural: null
-approach_summary: null
+branch: story/STORY-030-fuel-contracts
+worktree_path: /Users/brent/idle-base-worktrees/STORY-030
+base_branch: master
+pr_url: https://github.com/brentfisher/idle-base/pull/34
+is_architectural: true
+approach_summary: >
+  New pure `engine/contracts.js` in the house shop contract (listOffers/accept/claim/abandon),
+  with costs and prose in new `data/actSevenContractsConfig.js`; writes the already-declared
+  `expedition.contracts` slice through colony.js's accessor pattern. Registers
+  `nextContractEventClock` as an APPEND to tickEngine's EVENT_CLOCK_CONTRIBUTORS and a paired
+  `advanceContracts()` resolver in the loop body. The ordering constraint is the risk: 
+  `contractUpkeepPerSecond` must be summed into the consumer side BEFORE
+  `nextColonyThresholdClock` solves, or an expedition contract can push a resource through zero
+  inside a step. Also touches actionTypes/gameReducer/a new actions module for accept/claim/abandon.
 created: 2026-08-13
-updated: 2026-08-13
+updated: 2026-08-16
 ---
 
 # Add the contract board and the fuel side quests
@@ -24,23 +32,23 @@ Twelve contracts across five kinds, so the board is not one side quest with twel
 
 ## Acceptance Criteria
 
-- [ ] New `engine/contracts.js` (pure) and its config + prose in `data/`.
-- [ ] Shop-contract shape: offers with progress/claimability resolved, plus `accept`, `claim`,
+- [x] New `engine/contracts.js` (pure) and its config + prose in `data/`.
+- [x] Shop-contract shape: offers with progress/claimability resolved, plus `accept`, `claim`,
       `abandon`, `refreshBoard`, `advanceContracts`, `contractUpkeepPerSecond`, and
       `nextContractEventClock` registered on STORY-017's list.
-- [ ] Board randomness is **seeded from state**, not a bare `Math.random()`; `rng` enters as a
+- [x] Board randomness is **seeded from state**, not a bare `Math.random()`; `rng` enters as a
       defaulted parameter.
-- [ ] **Only unaccepted offers expire.** An accepted contract never expires; a lapse returns as a
+- [x] **Only unaccepted offers expire.** An accepted contract never expires; a lapse returns as a
       makeup offer at the same payout. Nothing is ever debited or lost.
-- [ ] **`claim()` returns `null` when the payout would exceed `fuel.capacity`** rather than silently
+- [x] **`claim()` returns `null` when the payout would exceed `fuel.capacity`** rather than silently
       destroying the overflow. Claiming is a player action, never an auto-credit.
-- [ ] `contractUpkeepPerSecond(state)` is summed into the consumer side **before**
+- [x] `contractUpkeepPerSecond(state)` is summed into the consumer side **before**
       `nextColonyThresholdClock` solves — otherwise an expedition contract can push a resource
       through zero inside a step.
-- [ ] Payouts resolve as a percentage of **the threshold of the launch currently being filled**
+- [x] Payouts resolve as a percentage of **the threshold of the launch currently being filled**
       (5% / 7.5% / 11%), never a hardcoded absolute, and total no more than 40% of any threshold.
-- [ ] Sustain/window progress resolves correctly across an 8-hour offline `advance()`.
-- [ ] `npm run build` passes.
+- [x] Sustain/window progress resolves correctly across an 8-hour offline `advance()`.
+- [x] `npm run build` passes.
 
 ## Notes
 

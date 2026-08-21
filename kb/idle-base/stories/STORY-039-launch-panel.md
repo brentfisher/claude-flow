@@ -7,10 +7,11 @@ branch: null
 worktree_path: null
 base_branch: null
 pr_url: null
-is_architectural: null
-approach_summary: null
+is_architectural: false
+approach_summary: >
+  Carries the act's most consequential decision, and the UI CREATES it rather than reporting it: §7.3's band gives each site a tank holding 1.6x the DEPARTING threshold, and committing dumps the WHOLE TANK, not the threshold — there is no change. A panel showing only 'threshold met / not met' deletes the decision. The 1.6 is derived, never restated in the component. Commit needs a confirm surface on CallUpModal's precedent. Must read honestly before any tank exists (Fuel base capacity is 0) and render in-flight transit from the engine clock — no Date.now(), no component timer.
 created: 2026-08-16
-updated: 2026-08-16
+updated: 2026-08-17
 ---
 
 # Build the Launch panel — the Fuel threshold, the overshoot decision and the commit surface

@@ -338,3 +338,83 @@ merged; the rename is worth doing once #30 and #31 land.
 
 Everything 027 adds passes that rule — Home Plate, the On-Deck Circle, the bases, the Warning Track,
 and the Sandlot / Mound / Long Toss / Cutoff / Swing pads are all terms the sport already owns.
+
+---
+
+## Queued follow-ups — approved 2026-08-20, to run AFTER the panel wave
+
+Both were gated on work that has now merged, and both were deliberately kept out of the
+037/038 wave because they touch files those agents are editing. Serialize them behind it.
+
+1. **The naming-convention rename.** `reactor`, `hydroponicsBay` and `solarWing` in
+   `data/actSevenModulesConfig.js` violate `data/actSevenNamingConfig.js`'s prohibition. The
+   "Still outstanding" section above gated this on "#30 and #31 land" — **both have merged**, so
+   the gate is discharged and the rename is live work. It touches merged module config that the
+   Fab panel (#37) now renders, so re-check the panel after renaming.
+
+2. **Re-measure D-5's dead-air interval.** STORY-031 carried forward a worst interval of
+   **3.32 min against a ~2 min target**, diagnosed to §5's 1.14 growth exponent on a uniformly-
+   levelled portfolio rather than to anything §7 authors. Per §7.6's remedy ("a cheaper Salvage
+   sink, never a smaller threshold") nothing was retuned, and the note said the fix belongs to
+   the §6/§8/§9 content stories and D-5 should be re-measured once they land. **029, 030 and 031
+   have all merged**, so that obligation is now live.
+
+   Anything that lengthens a fill must also re-run §12's five-hour ceiling: STORY-032 measured
+   the act won at **291.8 min = 4.86h against a 5.00h ceiling — a 2.7% margin**, and that buyer
+   is a limit rather than a person, so a real player already exceeds five hours.
+
+---
+
+## #39 vs #40 (STORY-037 Sites, STORY-038 Artifacts) — MEASURED, not predicted
+
+Both branched from `master` @ `0cba1d2`. A real test merge was run on 2026-08-20 and the resolution
+below was **built and verified**, not reasoned about. Three files are touched by both:
+
+| File | Result |
+|---|---|
+| `data/actSevenPanels.js` | **auto-merges.** Different `blurb` rows, line-local. |
+| `state/gameReducer.js` | conflicts; **blind take-both is correct and builds.** |
+| `styles/global.css` | conflicts; **blind take-both BREAKS THE BUILD.** See below. |
+
+### `global.css` — do not resolve this line-by-line
+
+Both stories insert a section header comment at the same anchor, so **the `=======` marker lands
+in the middle of a rule.** Deleting the three marker lines and keeping both sides splices 037's
+`.v7-site-status` body into 038's header comment and yields:
+
+```
+SyntaxError (3520:1) Unclosed block
+```
+
+That one failed loudly. The same class of splice landing between two complete rules would produce
+*valid CSS with a mangled selector* and no error at all — which is the silent version of this
+hazard, and the reason this note exists.
+
+**Resolve by taking each section as a WHOLE UNIT, in story order, both above the final media query.**
+Reconstruct rather than hand-edit: `master`'s final `@media (max-width: 640px)` is at line **3421**;
+037 contributes the **208** lines above it from its branch, 038 contributes **477**. Merged file is
+`master[:3421] + block037 + block038 + master[3421:]` = **4,134 lines with the media query at 4,106**
+and both panels' rules above it. 208 + 477 matches both branches' diff stats exactly, which is the
+check that the reconstruction dropped nothing.
+
+Verified after resolving: `npm run build` compiles with 3 warnings (the pre-existing bundle-size
+ones) and 0 errors; `.v7-site` and `.v7-artifact` rules both sit above 4,106.
+
+### `gameReducer.js`
+
+Two independent hunks — the `require` line and the `case` arms. Take both sides of both. Verify
+`BUY_SITE_BUILD` and all five `puzzleActions.*` arms survive; a missing arm fails at first dispatch,
+not at build.
+
+> **Merge order note:** whichever lands second owns this resolution. The measurements above are
+> against `master` @ `0cba1d2`; if anything else touches `global.css` first, re-derive the line
+> numbers rather than trusting these.
+
+### An inconsistency the wave introduced — worth a decision
+
+037 registered its action in `state/actionTypes.js` (house convention, all 18 sibling modules).
+038 declared its five ids as constants **on `puzzleActions.js` itself**, with an argued comment
+(dispatcher and reducer import from one file, so they cannot drift). Both are defensible; having
+**both in one codebase is not**. This came from the kickoff prompt asking agents to keep action
+types in their own module to minimise conflict — the instruction was wrong, not the agents.
+Normalising to `actionTypes.js` is the smaller change and matches everything else.

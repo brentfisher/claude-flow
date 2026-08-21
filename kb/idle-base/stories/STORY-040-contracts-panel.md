@@ -7,10 +7,11 @@ branch: null
 worktree_path: null
 base_branch: null
 pr_url: null
-is_architectural: null
-approach_summary: null
+is_architectural: false
+approach_summary: >
+  Renders engine/contracts.js (STORY-030, merged #34). Must read as an OPPORTUNITY, never a chore — §6.4 makes it the only purely optional tab and a player who never opens it still finishes. MUST RUN LAST OF THE SIX: it also removes PlaceholderPanel.js and the blurb / ACT_SEVEN_PLACEHOLDER_NOTE entries once nothing consumes them, keeping id/label/title which TabNav still spreads — so it needs 035-039 landed first, and must re-verify that the three id lists (actSevenPanels, AppShell PANELS, TabNav TABS) still agree, two of which fail SILENTLY.
 created: 2026-08-16
-updated: 2026-08-16
+updated: 2026-08-17
 ---
 
 # Build the Contracts panel — the optional board, paid in Fuel

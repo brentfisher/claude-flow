@@ -1,17 +1,17 @@
 ---
 id: STORY-035
 title: Build the Ops panel — net rates, the ration, the phase and the standing directive
-status: pending
+status: pr-opened
 prd_source: /Users/brent/idle-base/docs/PRD-act-seven-farm-team.md
-branch: null
-worktree_path: null
-base_branch: null
-pr_url: null
+branch: story/STORY-035-ops-panel
+worktree_path: /Users/brent/idle-base-worktrees/STORY-035
+base_branch: story/STORY-035-ops-panel
+pr_url: https://github.com/brentfisher/idle-base/pull/38
 is_architectural: false
 approach_summary: >
   Replace `OpsPanel`'s placeholder with a readout driven entirely by `colonyRates(state)` — per-resource stock against derived capacity, signed net rates, the ration and `supplyThrottle` kept distinct, and Salvage/s from the same solve so the panel and header can never disagree. Adds a phase-keyed standing directive as prose in `src/data/`. Render-only: no new action types, no reducer change, no arithmetic in the component. Extends STORY-034's `.v7-rate` and `.v7-meter` primitives inside the existing `body.expedition` section.
 created: 2026-08-16
-updated: 2026-08-16
+updated: 2026-08-17
 ---
 
 # Build the Ops panel — net rates, the ration, the phase and the standing directive
@@ -38,44 +38,44 @@ and creating a season silently deleted it.
 
 **The readout**
 
-- [ ] `components/expedition/OpsPanel.js` renders real content and no longer returns
+- [x] `components/expedition/OpsPanel.js` renders real content and no longer returns
       `<PlaceholderPanel />`.
-- [ ] Per-resource rows for the four consumables, each showing stock against `capacity` and the
+- [x] Per-resource rows for the four consumables, each showing stock against `capacity` and the
       **net** rate from `colonyRates()`, signed, using `--v7-good` for surplus and `--v7-drain` for
       drain.
-- [ ] A resource pinned at zero with negative raw demand, or at capacity with positive raw supply,
+- [x] A resource pinned at zero with negative raw demand, or at capacity with positive raw supply,
       reads as **0/s** and is visibly distinguished (`--v7-alert`) from one merely running negative
       — that clamp is Decision 3.3's throttle-rather-than-fail and the player must be able to see it.
-- [ ] The **ration** (`satisfaction`) is shown as a percentage, with `supplyThrottle` distinguished
+- [x] The **ration** (`satisfaction`) is shown as a percentage, with `supplyThrottle` distinguished
       from it rather than folded in — they are different facts and the header already treats them so.
-- [ ] Salvage/s is shown, sourced from `colonyRates().salvage`, so the panel and `HeaderStats` can
+- [x] Salvage/s is shown, sourced from `colonyRates().salvage`, so the panel and `HeaderStats` can
       never disagree about how starved the colony is.
 
 **Phase and directive**
 
-- [ ] The current `expedition.phase` renders as the pill STORY-034 authors, read from that story's
+- [x] The current `expedition.phase` renders as the pill STORY-034 authors, read from that story's
       palette data rather than from a second copy.
-- [ ] A standing **directive** line — the act's current objective in the Office's voice — renders
+- [x] A standing **directive** line — the act's current objective in the Office's voice — renders
       from prose in `src/data/`, keyed by phase. No string literal in the component.
-- [ ] The directive has an entry for every phase in `EXPEDITION_PHASES`, including `majors`, so no
+- [x] The directive has an entry for every phase in `EXPEDITION_PHASES`, including `majors`, so no
       reachable phase renders an empty line.
 
 **Behaviour under real states**
 
-- [ ] With **no modules owned** (`aftermath`, the act's first 20–30 minutes) the panel renders
+- [x] With **no modules owned** (`aftermath`, the act's first 20–30 minutes) the panel renders
       honestly — zeros and the directive, not an empty box and not a crash.
-- [ ] Renders without throwing against a save carrying **no `expedition` key at all**, via the
+- [x] Renders without throwing against a save carrying **no `expedition` key at all**, via the
       defaulting accessor rather than a guard in the component.
-- [ ] Reads `expedition` through `expeditionSlice()` / `colonyRates()` and never indexes
+- [x] Reads `expedition` through `expeditionSlice()` / `colonyRates()` and never indexes
       `state.expedition.*` directly.
 
 **Verification**
 
-- [ ] `npm run build` passes.
-- [ ] Drive `colonyRates()` under `node` against a starved colony, a surplus colony and an empty
+- [x] `npm run build` passes.
+- [x] Drive `colonyRates()` under `node` against a starved colony, a surplus colony and an empty
       one, and confirm the panel's displayed values against the returned object — the repo's
       substitute for a test runner (`conventions.md`).
-- [ ] Any new CSS goes **inside STORY-034's `body.expedition` section**, above the mobile media
+- [x] Any new CSS goes **inside STORY-034's `body.expedition` section**, above the mobile media
       query.
 
 ## Notes
