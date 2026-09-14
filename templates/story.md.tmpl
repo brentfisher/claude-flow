@@ -1,7 +1,12 @@
 ---
+type: Story
 id: {{STORY_ID}}
 title: {{TITLE}}
+description: {{ONE_LINE_SUMMARY}}
 status: pending
+# `status` here is flow's workflow vocabulary (pending/approved/in-progress/ready-for-pr/
+# pr-opened/merged/...), not OKF's draft/stable/deprecated lifecycle — kept as-is because
+# kickoff and open-prs read/write it directly across every repo using flow. Don't rename it.
 prd_source: {{ABSOLUTE_PRD_PATH}}
 # `status` and `updated` start here but move as the story does — /kickoff and
 # /open-prs advance them: pending → approved → in-progress → ready-for-pr → pr-opened.

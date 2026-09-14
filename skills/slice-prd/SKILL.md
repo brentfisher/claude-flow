@@ -45,9 +45,11 @@ description: Slice a PRD document into discrete, independently-implementable use
 5. **Write one file per story** at `kb/<slug>/stories/STORY-NNN-<slug>.md`, using
    `templates/story.md.tmpl` as the structure — the plugin root's `templates/`, a sibling of
    `skills/` and the same directory `kb-generate` draws its four templates from, **not** a
-   directory inside this skill. Fill in `id`, `title`, `status: pending`,
+   directory inside this skill. Fill in `id`, `title`, `description` (one real sentence — this is
+   what the regenerated `index.md`, step 6, shows per story), `status: pending`,
    `prd_source: <prd-path>`, `created`/`updated` (today, ISO date), a real summary, and real
-   acceptance criteria. Leave `branch`, `worktree_path`, `base_branch`, `pr_url`,
+   acceptance criteria. `type: Story` is already in the template — leave it. Leave `branch`,
+   `worktree_path`, `base_branch`, `pr_url`,
    `is_architectural` and `approach_summary` present and `null` — `kickoff` and `open-prs` fill
    those in and read those keys, so don't drop them. In the **Notes** section, cite specific
    knowledgebase or OpenSpec sources that constrain this story, e.g. "conventions.md: uses
@@ -62,8 +64,21 @@ description: Slice a PRD document into discrete, independently-implementable use
      archived or in-flight decision is the most expensive failure mode of slicing — it surfaces
      in review, if at all.
 
-6. **Regenerate `kb/<slug>/stories/INDEX.md`** — a simple generated table (id, title, status) over
-   all story files in that directory. This file is never hand-edited; always fully regenerate it.
+6. **Regenerate `kb/<slug>/stories/index.md`** (lowercase — OKF's reserved directory-listing
+   filename, §8) over all story files in that directory: no frontmatter, one bullet per story
+   under a heading, id/title/status folded into each line since OKF's index format has no table
+   form, e.g.:
+   ```markdown
+   # Stories
+
+   * [STORY-001: Repo scaffold](STORY-001-repo-scaffold.md) - merged
+   * [STORY-002: Shared game data](STORY-002-shared-game-data.md) - pending
+   ```
+   This file is never hand-edited; always fully regenerate it. If an existing `INDEX.md`
+   (uppercase) is found instead, rename it to `index.md` and convert its table to this bullet
+   form rather than leaving both — git treats a bare case-only rename as a no-op on a
+   case-insensitive filesystem, so stage it as two renames (`INDEX.md` → a temp name → `index.md`)
+   and confirm with `git status` that a rename actually staged, not a no-op.
 
 7. Report back to the user: how many stories were created, their ids/titles, and remind them the
    next step is `/kickoff <target-repo-path>`. Two things the report must state as well, every
@@ -73,7 +88,11 @@ description: Slice a PRD document into discrete, independently-implementable use
      marked *present* (with what you found in it), *empty*, or *absent*. "There were no prior
      decisions" and "I looked in the wrong place" produce identical silence otherwise, and the
      second is a correctness failure the user has no way to see.
-   - **Where the stories live, and that they're local-only**: `kb/<slug>/stories/` inside this
-     plugin, outside the target repo and not under version control. If the user asks to commit
-     the stories, say plainly that there's nothing to commit them to — the PRD is in their repo,
-     the stories aren't — and that they exist on this machine only.
+   - **Where the stories actually live**: `<target-repo-path>/docs/kb/stories/` — inside the
+     target repo, reached here through the `kb/<slug>` symlink (see `kb-generate` step 1a). They
+     are real files in the target repo's own working tree, so the user CAN commit them there if
+     they want; unlike the old external-copy default, there's no "nothing to commit them to" case
+     to explain anymore. If `kb/<slug>` turned out to be a real directory rather than a symlink
+     (an old external copy that predates this convention), say so explicitly — that's the one
+     case where the stories are still plugin-local only, and `kb-generate` should be rerun first
+     to reconcile it.
