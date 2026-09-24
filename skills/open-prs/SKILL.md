@@ -44,8 +44,11 @@ Two invocation shapes:
    its commits are already pushed and live on the remote/PR. If removal fails (e.g. uncommitted
    changes snuck in), warn the user rather than forcing it.
 
-7. **Regenerate `kb/<slug>/stories/index.md`** (lowercase — see `slice-prd` step 6 for the exact
-   bullet format and the case-rename gotcha if an uppercase `INDEX.md` still exists).
+7. **Update this story's line in `kb/<slug>/stories/index.md`** — don't regenerate the whole index
+   (that reads every story file once per completion). `grep -n '<story-id>'` the index and Edit
+   just that line's status (and PR link if the line carries one). Fall back to a full regeneration
+   per `slice-prd` step 6 only if the line is missing, `index.md` doesn't exist, or only an
+   uppercase `INDEX.md` exists (see that step's case-rename gotcha).
 
 8. **Never merge the PR.** This skill's job ends at opening it for review.
 
